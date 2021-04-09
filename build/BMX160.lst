@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
   11:Src/BMX160.c  ****     int16_t raw_data[6]; 
   46              		.loc 1 11 5 view .LVU4
   12:Src/BMX160.c  ****     int i_count;
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 2
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 2
 
 
   47              		.loc 1 12 5 view .LVU5
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
   32:Src/BMX160.c  ****         }
   33:Src/BMX160.c  **** 
   34:Src/BMX160.c  ****         //gyro data definition
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 3
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 3
 
 
   35:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  121 0052 DA1C     		adds	r2, r3, #3
  122              		.loc 1 41 65 discriminator 3 view .LVU37
  123 0054 12A9     		add	r1, sp, #72
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 4
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 4
 
 
  124 0056 01EB4202 		add	r2, r1, r2, lsl #1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  166              		.loc 1 47 35 is_stmt 1 discriminator 3 view .LVU53
   47:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
  167              		.loc 1 47 42 is_stmt 0 discriminator 3 view .LVU54
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 5
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 5
 
 
  168 00a2 0133     		adds	r3, r3, #1
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  208              		.file 2 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h"
    1:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
    2:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   ******************************************************************************
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 6
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 6
 
 
    3:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @file    stm32f7xx_ll_tim.h
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
   57:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** };
   58:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
   59:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** static const uint8_t SHIFT_TAB_OCxx[] =
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 7
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 7
 
 
   60:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** {
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  114:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /* Private constants ---------------------------------------------------------*/
  115:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_Private_Constants TIM Private Constants
  116:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 8
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 8
 
 
  117:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  171:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3
  172:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3N
  173:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH4
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 9
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 9
 
 
  174:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH5
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  228:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                    This parameter must be a number between Min_Data=0x0000 and Max_
  229:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                    Some timer instances may support 32 bits counters. In that case 
  230:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 10
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 10
 
 
  231:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                    This feature can be modified afterwards using unitary function @
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  285:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t OCIdleState;   /*!< Specifies the TIM Output Compare pin state during Idle state.
  286:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCIDLESTATE.
  287:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 11
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 11
 
 
  288:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  342:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  343:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
  344:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 12
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 12
 
 
  345:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t IC1Prescaler;    /*!< Specifies the TI1 input prescaler value.
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  399:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  400:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t CommutationDelay;   /*!< Specifies the compare value to be loaded into the Capture Compa
  401:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                     A positive pulse (TRGO event) is generated with a programmable 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 13
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 13
 
 
  402:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                     a change occurs on the Hall inputs.
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  456:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_BREAK_FILTER
  457:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  458:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 14
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 14
 
 
  459:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  513:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_TIF                          TIM_SR_TIF           /*!< Trigger interrupt flag */
  514:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_BIF                          TIM_SR_BIF           /*!< Break interrupt flag */
  515:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_B2IF                         TIM_SR_B2IF          /*!< Second break interrupt fla
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 15
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 15
 
 
  516:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_CC1OF                        TIM_SR_CC1OF         /*!< Capture/Compare 1 overcapt
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  570:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_UPDATESOURCE Update Source
  571:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
  572:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 16
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 16
 
 
  573:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_UPDATESOURCE_REGULAR            0x00000000U          /*!< Counter overflow/underflow
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  627:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  628:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_CCDMAREQUEST Capture Compare DMA Request
  629:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 17
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 17
 
 
  630:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  684:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_PWM1                     (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1)               
  685:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_PWM2                     (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1
  686:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_RETRIG_OPM1              TIM_CCMR1_OC1M_3                                    
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 18
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 18
 
 
  687:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_RETRIG_OPM2              (TIM_CCMR1_OC1M_3 | TIM_CCMR1_OC1M_0)               
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  741:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV8                      (TIM_CCMR1_IC1PSC << 16U)      /*!< Capture is done 
  742:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
  743:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 19
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 19
 
 
  744:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  798:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  799:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_TRGO Trigger Output
  800:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 20
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 20
 
 
  801:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  855:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_ITR3                         (TIM_SMCR_TS_0 | TIM_SMCR_TS_1)                     
  856:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_TI1F_ED                      TIM_SMCR_TS_2                                       
  857:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_TI1FP1                       (TIM_SMCR_TS_2 | TIM_SMCR_TS_0)                     
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 21
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 21
 
 
  858:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_TI2FP2                       (TIM_SMCR_TS_2 | TIM_SMCR_TS_1)                     
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  912:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_BREAK_POLARITY_HIGH             TIM_BDTR_BKP              /*!< Break input BRK is ac
  913:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
  914:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 22
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 22
 
 
  915:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  969:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
  970:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  971:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 23
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 23
 
 
  972:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OSSI OSSI
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1026:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_SR            TIM_DCR_DBA_2                                       
 1027:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_EGR           (TIM_DCR_DBA_2 | TIM_DCR_DBA_0)                     
 1028:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCMR1         (TIM_DCR_DBA_2 | TIM_DCR_DBA_1)                     
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 24
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 24
 
 
 1029:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCMR2         (TIM_DCR_DBA_2 | TIM_DCR_DBA_1 | TIM_DCR_DBA_0)     
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1083:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TIM2_ITR1_RMP_OTG_FS_SOF   (TIM2_OR_ITR1_RMP_1 | TIM2_OR_RMP_MASK)    /*!< TIM2_ITR1
 1084:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TIM2_ITR1_RMP_OTG_HS_SOF   (TIM2_OR_ITR1_RMP | TIM2_OR_RMP_MASK)      /*!< TIM2_ITR1
 1085:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 25
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 25
 
 
 1086:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1140:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @retval Register value
 1141:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
 1142:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_ReadReg(__INSTANCE__, __REG__) READ_REG((__INSTANCE__)->__REG__)
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 26
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 26
 
 
 1143:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1197:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
 1198:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define __LL_TIM_CALC_ARR(__TIMCLK__, __PSC__, __FREQ__) \
 1199:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****      ((((__TIMCLK__)/((__PSC__) + 1U)) >= (__FREQ__)) ? (((__TIMCLK__)/((__FREQ__) * ((__PSC__) + 1
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 27
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 27
 
 
 1200:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1254:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EF_Time_Base Time Base configuration
 1255:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
 1256:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 28
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 28
 
 
 1257:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1311:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
 1312:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
 1313:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @brief  Indicates whether update event generation is enabled.
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 29
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 29
 
 
 1314:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @rmtoll CR1          UDIS          LL_TIM_IsEnabledUpdateEvent
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1368:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   MODIFY_REG(TIMx->CR1, TIM_CR1_OPM, OnePulseMode);
 1369:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
 1370:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 30
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 30
 
 
 1371:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1425:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   return (uint32_t)(READ_BIT(TIMx->CR1, TIM_CR1_DIR | TIM_CR1_CMS));
 1426:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
 1427:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 31
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 31
 
 
 1428:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
 1482:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *       whether or not the clock division feature is supported by the timer
 1483:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *       instance.
 1484:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @rmtoll CR1          CKD           LL_TIM_GetClockDivision
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 32
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 32
 
 
 1485:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @param  TIMx Timer instance
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  225 00dc 0135     		adds	r5, r5, #1
  226              	.LVL18:
  227              	.L2:
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 33
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 33
 
 
   18:Src/BMX160.c  **** 
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
   26:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
  271              		.loc 1 26 14 discriminator 1 view .LVU89
  272 0100 182B     		cmp	r3, #24
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 34
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 34
 
 
  273 0102 FBD9     		bls	.L3
@@ -2014,7 +2014,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  294 011c 16E0     		b	.L16
  295              	.LVL25:
  296              	.L17:
-  61:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/(float)2000;
+  61:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
  297              		.loc 1 61 9 is_stmt 1 discriminator 3 view .LVU96
  298              		.loc 1 61 63 is_stmt 0 discriminator 3 view .LVU97
  299 011e 03F11002 		add	r2, r3, #16
@@ -2025,7 +2025,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  304 012e 86EEA77A 		vdiv.f32	s14, s13, s15
  305              		.loc 1 61 40 discriminator 3 view .LVU99
  306 0132 82ED007A 		vstr.32	s14, [r2]
-  62:Src/BMX160.c  ****         BMX_str->acc_st_bias[i_count] = BMX_str->acc_st_bias[i_count]/(float)2000;
+  62:Src/BMX160.c  ****         BMX_str->acc_st_bias[i_count] = BMX_str->acc_st_bias[i_count]/2000.0f;
  307              		.loc 1 62 9 is_stmt 1 discriminator 3 view .LVU100
  308              		.loc 1 62 61 is_stmt 0 discriminator 3 view .LVU101
  309 0136 03F11202 		add	r2, r3, #18
@@ -2035,19 +2035,19 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  313 0142 86EEA77A 		vdiv.f32	s14, s13, s15
  314              		.loc 1 62 39 discriminator 3 view .LVU103
  315 0146 82ED017A 		vstr.32	s14, [r2, #4]
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/(float)2000;
+  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
  316              		.loc 1 60 31 is_stmt 1 discriminator 3 view .LVU104
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/(float)2000;
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 35
+  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 35
 
 
  317              		.loc 1 60 38 is_stmt 0 discriminator 3 view .LVU105
  318 014a 0133     		adds	r3, r3, #1
  319              	.LVL26:
  320              	.L16:
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/(float)2000;
+  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
  321              		.loc 1 60 20 is_stmt 1 discriminator 1 view .LVU106
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/(float)2000;
+  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
  322              		.loc 1 60 5 is_stmt 0 discriminator 1 view .LVU107
  323 014c 022B     		cmp	r3, #2
  324 014e E6DD     		ble	.L17
@@ -2074,7 +2074,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
   83:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
   84:Src/BMX160.c  ****     */
   85:Src/BMX160.c  ****      
-  86:Src/BMX160.c  ****     BMX_str->acc_st_bias[2] += (float)1; //subtracting 1 g to the average of Z acc reading
+  86:Src/BMX160.c  ****     BMX_str->acc_st_bias[2] += 1.0f; //subtracting 1 g to the average of Z acc reading
  325              		.loc 1 86 5 is_stmt 1 view .LVU108
  326              		.loc 1 86 29 is_stmt 0 view .LVU109
  327 0150 D4ED157A 		vldr.32	s15, [r4, #84]
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  343 0168 0000FA44 		.word	1157234688
  344              		.cfi_endproc
  345              	.LFE851:
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 36
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 36
 
 
  347              		.section	.text.BMX_read,"ax",%progbits
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  100:Src/BMX160.c  ****     //wait 5 us
  101:Src/BMX160.c  ****     LL_TIM_SetCounter(TIM1, 0);
  391              		.loc 1 101 5 is_stmt 1 view .LVU122
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 37
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 37
 
 
  392              	.LBB20:
@@ -2168,7 +2168,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  395              	.LBB21:
 1507:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
  396              		.loc 2 1507 3 view .LVU124
- 397 001e 2E4B     		ldr	r3, .L31
+ 397 001e 264B     		ldr	r3, .L31
  398 0020 0022     		movs	r2, #0
  399 0022 5A62     		str	r2, [r3, #36]
  400              	.LVL31:
@@ -2187,7 +2187,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  410              	.LBB23:
  411              		.loc 2 1520 3 discriminator 1 view .LVU129
  412              		.loc 2 1520 10 is_stmt 0 discriminator 1 view .LVU130
- 413 0024 2C4B     		ldr	r3, .L31
+ 413 0024 244B     		ldr	r3, .L31
  414 0026 5B6A     		ldr	r3, [r3, #36]
  415              	.LVL32:
  416              		.loc 2 1520 10 discriminator 1 view .LVU131
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  437              	.L25:
  107:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
  438              		.loc 1 107 9 is_stmt 1 discriminator 3 view .LVU137
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 38
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 38
 
 
  439              		.loc 1 107 41 is_stmt 0 discriminator 3 view .LVU138
@@ -2248,10 +2248,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  455 0050 0023     		movs	r3, #0
  456              	.LVL36:
  457              		.loc 1 111 16 view .LVU145
- 458 0052 1BE0     		b	.L26
+ 458 0052 13E0     		b	.L26
  459              	.LVL37:
  460              	.L27:
- 112:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
+ 112:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
  461              		.loc 1 112 9 is_stmt 1 discriminator 3 view .LVU146
  462              		.loc 1 112 54 is_stmt 0 discriminator 3 view .LVU147
  463 0054 12AA     		add	r2, sp, #72
@@ -2262,129 +2262,117 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 1
  468 0062 F8EEE77A 		vcvt.f32.s32	s15, s15
  469              		.loc 1 112 74 discriminator 3 view .LVU149
  470 0066 94ED0E7A 		vldr.32	s14, [r4, #56]
- 471              		.loc 1 112 65 discriminator 3 view .LVU150
- 472 006a 67EE877A 		vmul.f32	s15, s15, s14
- 473              		.loc 1 112 113 discriminator 3 view .LVU151
- 474 006e 03F11002 		add	r2, r3, #16
- 475 0072 04EB8202 		add	r2, r4, r2, lsl #2
- 476 0076 92ED007A 		vldr.32	s14, [r2]
- 477              		.loc 1 112 11 discriminator 3 view .LVU152
- 478 007a 04F10802 		add	r2, r4, #8
- 479              		.loc 1 112 25 discriminator 3 view .LVU153
- 480 007e 02EB8302 		add	r2, r2, r3, lsl #2
- 481              		.loc 1 112 90 discriminator 3 view .LVU154
- 482 0082 77EEC77A 		vsub.f32	s15, s15, s14
- 483              		.loc 1 112 35 discriminator 3 view .LVU155
- 484 0086 C2ED007A 		vstr.32	s15, [r2]
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
- 485              		.loc 1 111 31 is_stmt 1 discriminator 3 view .LVU156
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 39
+ 471              		.loc 1 112 11 discriminator 3 view .LVU150
+ 472 006a 04F10802 		add	r2, r4, #8
+ 473              		.loc 1 112 25 discriminator 3 view .LVU151
+ 474 006e 02EB8302 		add	r2, r2, r3, lsl #2
+ 475              		.loc 1 112 65 discriminator 3 view .LVU152
+ 476 0072 67EE877A 		vmul.f32	s15, s15, s14
+ 477              		.loc 1 112 35 discriminator 3 view .LVU153
+ 478 0076 C2ED007A 		vstr.32	s15, [r2]
+ 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
+ 479              		.loc 1 111 31 is_stmt 1 discriminator 3 view .LVU154
+ 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
+ 480              		.loc 1 111 38 is_stmt 0 discriminator 3 view .LVU155
+ 481 007a 0133     		adds	r3, r3, #1
+ 482              	.LVL38:
+ 483              	.L26:
+ 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 39
 
 
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
- 486              		.loc 1 111 38 is_stmt 0 discriminator 3 view .LVU157
- 487 008a 0133     		adds	r3, r3, #1
- 488              	.LVL38:
- 489              	.L26:
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
- 490              		.loc 1 111 20 is_stmt 1 discriminator 1 view .LVU158
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
- 491              		.loc 1 111 5 is_stmt 0 discriminator 1 view .LVU159
- 492 008c 022B     		cmp	r3, #2
- 493 008e E1DD     		ble	.L27
+ 484              		.loc 1 111 20 is_stmt 1 discriminator 1 view .LVU156
+ 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
+ 485              		.loc 1 111 5 is_stmt 0 discriminator 1 view .LVU157
+ 486 007c 022B     		cmp	r3, #2
+ 487 007e E9DD     		ble	.L27
  113:Src/BMX160.c  ****     }
  114:Src/BMX160.c  **** 
  115:Src/BMX160.c  ****     //acc data definition
  116:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
- 494              		.loc 1 116 16 view .LVU160
- 495 0090 0023     		movs	r3, #0
- 496              	.LVL39:
- 497              		.loc 1 116 16 view .LVU161
- 498 0092 1CE0     		b	.L28
- 499              	.LVL40:
- 500              	.L29:
- 117:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
- 501              		.loc 1 117 9 is_stmt 1 discriminator 3 view .LVU162
- 502              		.loc 1 117 69 is_stmt 0 discriminator 3 view .LVU163
- 503 0094 DA1C     		adds	r2, r3, #3
- 504              		.loc 1 117 61 discriminator 3 view .LVU164
- 505 0096 12A9     		add	r1, sp, #72
- 506 0098 01EB4202 		add	r2, r1, r2, lsl #1
- 507 009c 32F9402C 		ldrsh	r2, [r2, #-64]
- 508 00a0 07EE902A 		vmov	s15, r2	@ int
- 509              		.loc 1 117 46 discriminator 3 view .LVU165
- 510 00a4 F8EEE77A 		vcvt.f32.s32	s15, s15
- 511              		.loc 1 117 83 discriminator 3 view .LVU166
- 512 00a8 94ED0F7A 		vldr.32	s14, [r4, #60]
- 513              		.loc 1 117 74 discriminator 3 view .LVU167
- 514 00ac 67EE877A 		vmul.f32	s15, s15, s14
- 515              		.loc 1 117 120 discriminator 3 view .LVU168
- 516 00b0 03F11202 		add	r2, r3, #18
- 517 00b4 04EB8202 		add	r2, r4, r2, lsl #2
- 518 00b8 92ED017A 		vldr.32	s14, [r2, #4]
- 519              		.loc 1 117 11 discriminator 3 view .LVU169
- 520 00bc 04F11402 		add	r2, r4, #20
- 521              		.loc 1 117 32 discriminator 3 view .LVU170
- 522 00c0 02EB8302 		add	r2, r2, r3, lsl #2
- 523              		.loc 1 117 98 discriminator 3 view .LVU171
- 524 00c4 77EEC77A 		vsub.f32	s15, s15, s14
- 525              		.loc 1 117 42 discriminator 3 view .LVU172
- 526 00c8 C2ED007A 		vstr.32	s15, [r2]
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
- 527              		.loc 1 116 31 is_stmt 1 discriminator 3 view .LVU173
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
- 528              		.loc 1 116 38 is_stmt 0 discriminator 3 view .LVU174
- 529 00cc 0133     		adds	r3, r3, #1
- 530              	.LVL41:
- 531              	.L28:
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 40
-
-
- 532              		.loc 1 116 20 is_stmt 1 discriminator 1 view .LVU175
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
- 533              		.loc 1 116 5 is_stmt 0 discriminator 1 view .LVU176
- 534 00ce 022B     		cmp	r3, #2
- 535 00d0 E0DD     		ble	.L29
+ 488              		.loc 1 116 16 view .LVU158
+ 489 0080 0023     		movs	r3, #0
+ 490              	.LVL39:
+ 491              		.loc 1 116 16 view .LVU159
+ 492 0082 14E0     		b	.L28
+ 493              	.LVL40:
+ 494              	.L29:
+ 117:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
+ 495              		.loc 1 117 9 is_stmt 1 discriminator 3 view .LVU160
+ 496              		.loc 1 117 69 is_stmt 0 discriminator 3 view .LVU161
+ 497 0084 DA1C     		adds	r2, r3, #3
+ 498              		.loc 1 117 61 discriminator 3 view .LVU162
+ 499 0086 12A9     		add	r1, sp, #72
+ 500 0088 01EB4202 		add	r2, r1, r2, lsl #1
+ 501 008c 32F9402C 		ldrsh	r2, [r2, #-64]
+ 502 0090 07EE902A 		vmov	s15, r2	@ int
+ 503              		.loc 1 117 46 discriminator 3 view .LVU163
+ 504 0094 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 505              		.loc 1 117 83 discriminator 3 view .LVU164
+ 506 0098 94ED0F7A 		vldr.32	s14, [r4, #60]
+ 507              		.loc 1 117 11 discriminator 3 view .LVU165
+ 508 009c 04F11402 		add	r2, r4, #20
+ 509              		.loc 1 117 32 discriminator 3 view .LVU166
+ 510 00a0 02EB8302 		add	r2, r2, r3, lsl #2
+ 511              		.loc 1 117 74 discriminator 3 view .LVU167
+ 512 00a4 67EE877A 		vmul.f32	s15, s15, s14
+ 513              		.loc 1 117 42 discriminator 3 view .LVU168
+ 514 00a8 C2ED007A 		vstr.32	s15, [r2]
+ 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
+ 515              		.loc 1 116 31 is_stmt 1 discriminator 3 view .LVU169
+ 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
+ 516              		.loc 1 116 38 is_stmt 0 discriminator 3 view .LVU170
+ 517 00ac 0133     		adds	r3, r3, #1
+ 518              	.LVL41:
+ 519              	.L28:
+ 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
+ 520              		.loc 1 116 20 is_stmt 1 discriminator 1 view .LVU171
+ 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
+ 521              		.loc 1 116 5 is_stmt 0 discriminator 1 view .LVU172
+ 522 00ae 022B     		cmp	r3, #2
+ 523 00b0 E8DD     		ble	.L29
  118:Src/BMX160.c  ****     }
  119:Src/BMX160.c  **** }...
- 536              		.loc 1 119 1 view .LVU177
- 537 00d2 12B0     		add	sp, sp, #72
- 538              	.LCFI5:
- 539              		.cfi_def_cfa_offset 8
- 540              		@ sp needed
- 541 00d4 10BD     		pop	{r4, pc}
- 542              	.LVL42:
- 543              	.L32:
- 544              		.loc 1 119 1 view .LVU178
- 545 00d6 00BF     		.align	2
- 546              	.L31:
- 547 00d8 00000140 		.word	1073807360
- 548              		.cfi_endproc
- 549              	.LFE852:
- 551              		.text
- 552              	.Letext0:
- 553              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
- 554              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
- 555              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h"
- 556              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 557              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
- 558              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
- 559              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
- 560              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_rcc.h"
- 561              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_dma.h"
- 562              		.file 12 "Inc/BMX160.h"
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s 			page 41
+ 524              		.loc 1 119 1 view .LVU173
+ 525 00b2 12B0     		add	sp, sp, #72
+ 526              	.LCFI5:
+ 527              		.cfi_def_cfa_offset 8
+ 528              		@ sp needed
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 40
+
+
+ 529 00b4 10BD     		pop	{r4, pc}
+ 530              	.LVL42:
+ 531              	.L32:
+ 532              		.loc 1 119 1 view .LVU174
+ 533 00b6 00BF     		.align	2
+ 534              	.L31:
+ 535 00b8 00000140 		.word	1073807360
+ 536              		.cfi_endproc
+ 537              	.LFE852:
+ 539              		.text
+ 540              	.Letext0:
+ 541              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 542              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 543              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h"
+ 544              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 545              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 546              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
+ 547              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
+ 548              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_rcc.h"
+ 549              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_dma.h"
+ 550              		.file 12 "Inc/BMX160.h"
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 41
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 BMX160.c
-C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s:17     .text.BMX_calibration:00000000 $t
-C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s:25     .text.BMX_calibration:00000000 BMX_calibration
-C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s:342    .text.BMX_calibration:00000164 $d
-C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s:348    .text.BMX_read:00000000 $t
-C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s:355    .text.BMX_read:00000000 BMX_read
-C:\Users\Giorgio\AppData\Local\Temp\cc4OYfnt.s:547    .text.BMX_read:000000d8 $d
+C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:17     .text.BMX_calibration:00000000 $t
+C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:25     .text.BMX_calibration:00000000 BMX_calibration
+C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:342    .text.BMX_calibration:00000164 $d
+C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:348    .text.BMX_read:00000000 $t
+C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:355    .text.BMX_read:00000000 BMX_read
+C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:535    .text.BMX_read:000000b8 $d
 
 UNDEFINED SYMBOLS
 HAL_I2C_Master_Transmit

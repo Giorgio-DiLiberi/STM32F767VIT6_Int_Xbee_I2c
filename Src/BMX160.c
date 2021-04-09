@@ -58,8 +58,8 @@ void BMX_calibration(BMX_IMU_typedef *BMX_str){
 
     //average the bias value evaluated
     for(i_count=0; i_count<3; i_count++){
-        BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/(float)2000;
-        BMX_str->acc_st_bias[i_count] = BMX_str->acc_st_bias[i_count]/(float)2000;
+        BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
+        BMX_str->acc_st_bias[i_count] = BMX_str->acc_st_bias[i_count]/2000.0f;
     }
     /*sprintf((char*)buff, "cal. cplt.\n\r");
     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
@@ -83,7 +83,7 @@ void BMX_calibration(BMX_IMU_typedef *BMX_str){
     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
     */
      
-    BMX_str->acc_st_bias[2] += (float)1; //subtracting 1 g to the average of Z acc reading
+    BMX_str->acc_st_bias[2] += 1.0f; //subtracting 1 g to the average of Z acc reading
 
 }
  
@@ -109,11 +109,11 @@ void BMX_read(BMX_IMU_typedef *BMX_str){
 
     //gyro data definition
     for(i_count=0; i_count<3; i_count++){
-        *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str->gyro_st_bias[i_count];
+        *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_str->gyro_st_bias[i_count];
     }
 
     //acc data definition
     for(i_count=0; i_count<3; i_count++){
-        *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - BMX_str->acc_st_bias[i_count];
+        *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); // - BMX_str->acc_st_bias[i_count];
     }
 }

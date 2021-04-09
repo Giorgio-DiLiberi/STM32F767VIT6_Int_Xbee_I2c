@@ -61,7 +61,10 @@ BMX_IMU_typedef BMX; //BMX strut creation
 uint8_t buff[32]; //buffer for data transmission
 char string[] = "Hello World!\r\n";
 uint8_t main_counter = 0; //counter to trigger events only after some main cycles
+uint8_t tlm_counter = 0; //counter to send telemetry
 HAL_StatusTypeDef ret;
+
+float Tlm_Tx_buff[6]; //buffer to store the floating point values to send via telemetry
 
 /* USER CODE END PV */
 
@@ -123,6 +126,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   //BMX initialization
+
+  HAL_Delay(1000);
+
   LL_TIM_EnableCounter(TIM1);
 
   BMX_Init(&BMX);
@@ -133,7 +139,7 @@ int main(void)
   HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
 
   //BMX calibration
-  BMX_calibration(&BMX);
+  //BMX_calibration(&BMX);
 
   //Starting timer 2 in interrupt mode
   HAL_TIM_Base_Start_IT(&htim2); //this function start the timer in interrupt mode and calls the irq handler 
@@ -356,7 +362,7 @@ static void MX_UART4_Init(void)
 
   /* USER CODE END UART4_Init 1 */
   huart4.Instance = UART4;
-  huart4.Init.BaudRate = 9600;
+  huart4.Init.BaudRate = 115200;
   huart4.Init.WordLength = UART_WORDLENGTH_8B;
   huart4.Init.StopBits = UART_STOPBITS_1;
   huart4.Init.Parity = UART_PARITY_NONE;
@@ -459,8 +465,8 @@ void BMX_Init(BMX_IMU_typedef *BMX_str){
   //initialization for BMX struct values
   BMX_str->i2c_handler_ptr=&hi2c4;
   BMX_str->uart_hndler_ptr=&huart4;
-  BMX_str->acc_FS_conv=(float)0.000122; //[g/LSB] to multiply the int16 value and obtain a float
-  BMX_str->gyro_FS_conv=(float)0.0153; //[deg/s/LSB] to multiply the int16 value and obtain a float
+  BMX_str->acc_FS_conv=0.000122f; //[mg/LSB] to multiply the int16 value and obtain a float
+  BMX_str->gyro_FS_conv=0.0153f; //[deg/s/LSB] to multiply the int16 value and obtain a float
 
   //Initialization for values of BMX---> device register settings
   //gyro init and config
@@ -477,7 +483,7 @@ void BMX_Init(BMX_IMU_typedef *BMX_str){
 
   //wait 
   LL_TIM_SetCounter(TIM1, 0);
-  while(LL_TIM_GetCounter(TIM1)<600){}
+  while(LL_TIM_GetCounter(TIM1)<10000){}
 
 	//acc init and config
 	buff[0] = ACC_CONF_REG;
@@ -492,7 +498,7 @@ void BMX_Init(BMX_IMU_typedef *BMX_str){
 
   //wait 
   LL_TIM_SetCounter(TIM1, 0);
-  while(LL_TIM_GetCounter(TIM1)<600){}
+  while(LL_TIM_GetCounter(TIM1)<10000){}
 
 	//acc range config
 	buff[0] = ACC_RANGE_REG;
@@ -508,7 +514,7 @@ void BMX_Init(BMX_IMU_typedef *BMX_str){
 
   //wait 
   LL_TIM_SetCounter(TIM1, 0);
-  while(LL_TIM_GetCounter(TIM1)<600){}
+  while(LL_TIM_GetCounter(TIM1)<10000){}
 
     //gyro range config
 	buff[0]=GYRO_RANGE_REG;
@@ -524,7 +530,7 @@ void BMX_Init(BMX_IMU_typedef *BMX_str){
 
   //wait 
   LL_TIM_SetCounter(TIM1, 0);
-  while(LL_TIM_GetCounter(TIM1)<600){}
+  while(LL_TIM_GetCounter(TIM1)<10000){}
 
   //power mode to normal is set
   //change the power mode to normal for the gyro
@@ -539,18 +545,17 @@ void BMX_Init(BMX_IMU_typedef *BMX_str){
   }
 
   //wait 
-  LL_TIM_SetCounter(TIM1, 0);
-  while(LL_TIM_GetCounter(TIM1)<600){}
+  HAL_Delay(500);
 
 	//change the power mode to normal for the Acc see appropriate page of the notebook
   //the power mode is changed writing two times to the PMU reg
 	buff[0] = BMX_PM_REG;
 	buff[1] = 0x11;//command for normal mode for accelerometer;
 	if(HAL_I2C_Master_Transmit(BMX_str->i2c_handler_ptr, BMX160Address, buff, 2, HAL_MAX_DELAY)==HAL_OK){
-    sprintf((char*)buff, "Gyro conf OK!\n\r");
+    sprintf((char*)buff, "Acc pow OK!\n\r");
     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
   } else{
-    sprintf((char*)buff, "ERROR BMX\n\r");
+    sprintf((char*)buff, "ERROR ACP\n\r");
     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
   }
 
@@ -570,12 +575,51 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
       main_counter = 0;
       HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_2);//led toggle
       
-      sprintf((char*)buff, "accZ= %f\n\r", BMX.Acceleration[2]);
-      HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
+      // sprintf((char*)buff, "accX= %f\n\r", BMX.Acceleration[0]);
+      // HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
 
     }
 
-    BMX_read(&BMX);
+    BMX_read(&BMX); //Imu data read and save to the struct: data are raw unfiltered and maybe biased 
+
+    if (1){
+
+      //fill the telemetry array with red values
+      for (int i_tlm=0; i_tlm<6; i_tlm++) {
+        if (i_tlm<3) {
+          *(Tlm_Tx_buff+i_tlm) = BMX.Omega[i_tlm];
+        }
+        else if (i_tlm>=3 && i_tlm<6) {
+          *(Tlm_Tx_buff+i_tlm) = BMX.Acceleration[i_tlm - 3];
+        }
+      }
+
+      /* sprintf((char*)buff, "OmX= %f\n\r", Tlm_Tx_buff[0]);
+      HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
+
+      sprintf((char*)buff, "OmY= %f\n\r", Tlm_Tx_buff[1]);
+      HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
+
+      sprintf((char*)buff, "OmZ= %f\n\r", Tlm_Tx_buff[2]);
+      HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
+
+      sprintf((char*)buff, "aX= %f\n\r", Tlm_Tx_buff[3]);
+      HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
+
+      sprintf((char*)buff, "aY= %f\n\r", Tlm_Tx_buff[4]);
+      HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
+
+      sprintf((char*)buff, "aZ= %f\n\r", Tlm_Tx_buff[5]);
+      HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY); */
+
+      //send the telemetry array typecasted
+      HAL_UART_Transmit(&huart4, (uint8_t*)Tlm_Tx_buff, 24, HAL_MAX_DELAY);
+
+      //tlm_counter = 0;
+
+    }
+    
+    //tlm_counter += 1;
     main_counter += 1;
   }
 }
