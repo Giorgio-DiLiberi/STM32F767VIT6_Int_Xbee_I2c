@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -33,13 +33,14 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
    3:Src/BMX160.c  **** */
    4:Src/BMX160.c  **** 
    5:Src/BMX160.c  **** #include "BMX160.h"
-   6:Src/BMX160.c  **** 
-   7:Src/BMX160.c  **** void BMX_calibration(BMX_IMU_typedef *BMX_str){
-  29              		.loc 1 7 47 view -0
+   6:Src/BMX160.c  **** #include "stm32f767xx.h" //done to include timer struct
+   7:Src/BMX160.c  **** 
+   8:Src/BMX160.c  **** void BMX_calibration(BMX_IMU_typedef *BMX_str){
+  29              		.loc 1 8 47 view -0
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 64
   32              		@ frame_needed = 0, uses_anonymous_args = 0
-  33              		.loc 1 7 47 is_stmt 0 view .LVU1
+  33              		.loc 1 8 47 is_stmt 0 view .LVU1
   34 0000 30B5     		push	{r4, r5, lr}
   35              	.LCFI0:
   36              		.cfi_def_cfa_offset 12
@@ -50,257 +51,257 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
   41              	.LCFI1:
   42              		.cfi_def_cfa_offset 88
   43 0004 0446     		mov	r4, r0
-   8:Src/BMX160.c  ****     
-   9:Src/BMX160.c  ****     uint8_t tx_buff[4]; //buffer for transmit bytes
-  44              		.loc 1 9 5 is_stmt 1 view .LVU2
-  10:Src/BMX160.c  ****     uint8_t data_buffer[48]; //buffer for received data
-  45              		.loc 1 10 5 view .LVU3
-  11:Src/BMX160.c  ****     int16_t raw_data[6]; 
-  46              		.loc 1 11 5 view .LVU4
-  12:Src/BMX160.c  ****     int i_count;
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 2
+   9:Src/BMX160.c  ****     
+  10:Src/BMX160.c  ****     uint8_t tx_buff[4]; //buffer for transmit bytes
+  44              		.loc 1 10 5 is_stmt 1 view .LVU2
+  11:Src/BMX160.c  ****     uint8_t data_buffer[48]; //buffer for received data
+  45              		.loc 1 11 5 view .LVU3
+  12:Src/BMX160.c  ****     int16_t raw_data[6]; 
+  46              		.loc 1 12 5 view .LVU4
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 2
 
 
-  47              		.loc 1 12 5 view .LVU5
-  13:Src/BMX160.c  ****     
-  14:Src/BMX160.c  ****     //polling for data giving the first reg and ack for receiving that and the following 11 reg
-  15:Src/BMX160.c  ****     tx_buff[0] = GYRO_XLSB_REG;
-  48              		.loc 1 15 5 view .LVU6
-  49              		.loc 1 15 16 is_stmt 0 view .LVU7
+  13:Src/BMX160.c  ****     int i_count;
+  47              		.loc 1 13 5 view .LVU5
+  14:Src/BMX160.c  ****     
+  15:Src/BMX160.c  ****     //polling for data giving the first reg and ack for receiving that and the following 11 reg
+  16:Src/BMX160.c  ****     tx_buff[0] = GYRO_XLSB_REG;
+  48              		.loc 1 16 5 view .LVU6
+  49              		.loc 1 16 16 is_stmt 0 view .LVU7
   50 0006 0C23     		movs	r3, #12
   51 0008 8DF84430 		strb	r3, [sp, #68]
-  16:Src/BMX160.c  ****     
-  17:Src/BMX160.c  ****     // calibration is performed with 5 thousand subsequent readings 
-  18:Src/BMX160.c  ****     for(int i_gyro_cal=0; i_gyro_cal<2000; i_gyro_cal++){
-  52              		.loc 1 18 5 is_stmt 1 view .LVU8
+  17:Src/BMX160.c  ****     
+  18:Src/BMX160.c  ****     // calibration is performed with 5 thousand subsequent readings 
+  19:Src/BMX160.c  ****     for(int i_gyro_cal=0; i_gyro_cal<2000; i_gyro_cal++){
+  52              		.loc 1 19 5 is_stmt 1 view .LVU8
   53              	.LBB13:
-  54              		.loc 1 18 9 view .LVU9
+  54              		.loc 1 19 9 view .LVU9
   55              	.LVL1:
-  56              		.loc 1 18 13 is_stmt 0 view .LVU10
+  56              		.loc 1 19 13 is_stmt 0 view .LVU10
   57 000c 0025     		movs	r5, #0
-  58              		.loc 1 18 5 view .LVU11
+  58              		.loc 1 19 5 view .LVU11
   59 000e 66E0     		b	.L2
   60              	.LVL2:
   61              	.L5:
-  19:Src/BMX160.c  **** 
-  20:Src/BMX160.c  ****         //zero te timer 1 counter
-  21:Src/BMX160.c  ****         LL_TIM_SetCounter(TIM1,0);
-  22:Src/BMX160.c  **** 
-  23:Src/BMX160.c  ****         //polling for data giving the first reg and ack for receiving that and the following 11 reg
-  24:Src/BMX160.c  ****         HAL_I2C_Master_Transmit(BMX_str->i2c_handler_ptr, BMX160Address, tx_buff, 1, HAL_MAX_DELAY)
-  25:Src/BMX160.c  ****         //wait 5 us
-  26:Src/BMX160.c  ****         while(LL_TIM_GetCounter(TIM1)<25){}
-  27:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
-  28:Src/BMX160.c  **** 
-  29:Src/BMX160.c  ****         //data unpack
-  30:Src/BMX160.c  ****         for(i_count=0; i_count<12; i_count++){
-  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
-  62              		.loc 1 31 13 is_stmt 1 discriminator 3 view .LVU12
-  63              		.loc 1 31 45 is_stmt 0 discriminator 3 view .LVU13
+  20:Src/BMX160.c  **** 
+  21:Src/BMX160.c  ****         //zero te timer 1 counter
+  22:Src/BMX160.c  ****         LL_TIM_SetCounter(TIM1,0);
+  23:Src/BMX160.c  **** 
+  24:Src/BMX160.c  ****         //polling for data giving the first reg and ack for receiving that and the following 11 reg
+  25:Src/BMX160.c  ****         HAL_I2C_Master_Transmit(BMX_str->i2c_handler_ptr, BMX160Address, tx_buff, 1, HAL_MAX_DELAY)
+  26:Src/BMX160.c  ****         //wait 5 us
+  27:Src/BMX160.c  ****         while(LL_TIM_GetCounter(TIM1)<25){}
+  28:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
+  29:Src/BMX160.c  **** 
+  30:Src/BMX160.c  ****         //data unpack
+  31:Src/BMX160.c  ****         for(i_count=0; i_count<12; i_count++){
+  32:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+  62              		.loc 1 32 13 is_stmt 1 discriminator 3 view .LVU12
+  63              		.loc 1 32 45 is_stmt 0 discriminator 3 view .LVU13
   64 0010 05AA     		add	r2, sp, #20
   65 0012 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
-  66              		.loc 1 31 43 discriminator 3 view .LVU14
+  66              		.loc 1 32 43 discriminator 3 view .LVU14
   67 0014 02AA     		add	r2, sp, #8
   68 0016 D154     		strb	r1, [r2, r3]
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
-  69              		.loc 1 30 36 is_stmt 1 discriminator 3 view .LVU15
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
-  70              		.loc 1 30 43 is_stmt 0 discriminator 3 view .LVU16
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+  69              		.loc 1 31 36 is_stmt 1 discriminator 3 view .LVU15
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+  70              		.loc 1 31 43 is_stmt 0 discriminator 3 view .LVU16
   71 0018 0133     		adds	r3, r3, #1
   72              	.LVL3:
   73              	.L4:
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
-  74              		.loc 1 30 24 is_stmt 1 discriminator 1 view .LVU17
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
-  75              		.loc 1 30 9 is_stmt 0 discriminator 1 view .LVU18
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+  74              		.loc 1 31 24 is_stmt 1 discriminator 1 view .LVU17
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+  75              		.loc 1 31 9 is_stmt 0 discriminator 1 view .LVU18
   76 001a 0B2B     		cmp	r3, #11
   77 001c F8DD     		ble	.L5
-  32:Src/BMX160.c  ****         }
-  33:Src/BMX160.c  **** 
-  34:Src/BMX160.c  ****         //gyro data definition
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 3
+  33:Src/BMX160.c  ****         }
+  34:Src/BMX160.c  **** 
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 3
 
 
-  35:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
-  78              		.loc 1 35 20 view .LVU19
+  35:Src/BMX160.c  ****         //gyro data definition
+  36:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
+  78              		.loc 1 36 20 view .LVU19
   79 001e 0023     		movs	r3, #0
   80              	.LVL4:
-  81              		.loc 1 35 20 view .LVU20
+  81              		.loc 1 36 20 view .LVU20
   82 0020 13E0     		b	.L6
   83              	.LVL5:
   84              	.L7:
-  36:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); //- B
-  85              		.loc 1 36 13 is_stmt 1 discriminator 3 view .LVU21
-  86              		.loc 1 36 58 is_stmt 0 discriminator 3 view .LVU22
+  37:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); 
+  85              		.loc 1 37 13 is_stmt 1 discriminator 3 view .LVU21
+  86              		.loc 1 37 58 is_stmt 0 discriminator 3 view .LVU22
   87 0022 12AA     		add	r2, sp, #72
   88 0024 02EB4302 		add	r2, r2, r3, lsl #1
   89 0028 32F9402C 		ldrsh	r2, [r2, #-64]
   90 002c 07EE902A 		vmov	s15, r2	@ int
-  91              		.loc 1 36 43 discriminator 3 view .LVU23
+  91              		.loc 1 37 43 discriminator 3 view .LVU23
   92 0030 F8EEE77A 		vcvt.f32.s32	s15, s15
-  93              		.loc 1 36 78 discriminator 3 view .LVU24
+  93              		.loc 1 37 78 discriminator 3 view .LVU24
   94 0034 94ED0E7A 		vldr.32	s14, [r4, #56]
-  95              		.loc 1 36 15 discriminator 3 view .LVU25
+  95              		.loc 1 37 15 discriminator 3 view .LVU25
   96 0038 04F10802 		add	r2, r4, #8
-  97              		.loc 1 36 29 discriminator 3 view .LVU26
+  97              		.loc 1 37 29 discriminator 3 view .LVU26
   98 003c 02EB8302 		add	r2, r2, r3, lsl #2
-  99              		.loc 1 36 69 discriminator 3 view .LVU27
+  99              		.loc 1 37 69 discriminator 3 view .LVU27
  100 0040 67EE877A 		vmul.f32	s15, s15, s14
- 101              		.loc 1 36 39 discriminator 3 view .LVU28
+ 101              		.loc 1 37 39 discriminator 3 view .LVU28
  102 0044 C2ED007A 		vstr.32	s15, [r2]
-  35:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); //- B
- 103              		.loc 1 35 35 is_stmt 1 discriminator 3 view .LVU29
-  35:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); //- B
- 104              		.loc 1 35 42 is_stmt 0 discriminator 3 view .LVU30
+  36:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); 
+ 103              		.loc 1 36 35 is_stmt 1 discriminator 3 view .LVU29
+  36:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); 
+ 104              		.loc 1 36 42 is_stmt 0 discriminator 3 view .LVU30
  105 0048 0133     		adds	r3, r3, #1
  106              	.LVL6:
  107              	.L6:
-  35:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); //- B
- 108              		.loc 1 35 24 is_stmt 1 discriminator 1 view .LVU31
-  35:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); //- B
- 109              		.loc 1 35 9 is_stmt 0 discriminator 1 view .LVU32
+  36:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); 
+ 108              		.loc 1 36 24 is_stmt 1 discriminator 1 view .LVU31
+  36:Src/BMX160.c  ****             *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); 
+ 109              		.loc 1 36 9 is_stmt 0 discriminator 1 view .LVU32
  110 004a 022B     		cmp	r3, #2
  111 004c E9DD     		ble	.L7
-  37:Src/BMX160.c  ****         }
-  38:Src/BMX160.c  **** 
-  39:Src/BMX160.c  ****         //acc data definition
-  40:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
- 112              		.loc 1 40 20 view .LVU33
+  38:Src/BMX160.c  ****         }
+  39:Src/BMX160.c  **** 
+  40:Src/BMX160.c  ****         //acc data definition
+  41:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
+ 112              		.loc 1 41 20 view .LVU33
  113 004e 0023     		movs	r3, #0
  114              	.LVL7:
- 115              		.loc 1 40 20 view .LVU34
+ 115              		.loc 1 41 20 view .LVU34
  116 0050 14E0     		b	.L8
  117              	.LVL8:
  118              	.L9:
-  41:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
- 119              		.loc 1 41 13 is_stmt 1 discriminator 3 view .LVU35
- 120              		.loc 1 41 73 is_stmt 0 discriminator 3 view .LVU36
+  42:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
+ 119              		.loc 1 42 13 is_stmt 1 discriminator 3 view .LVU35
+ 120              		.loc 1 42 73 is_stmt 0 discriminator 3 view .LVU36
  121 0052 DA1C     		adds	r2, r3, #3
- 122              		.loc 1 41 65 discriminator 3 view .LVU37
+ 122              		.loc 1 42 65 discriminator 3 view .LVU37
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 4
+
+
  123 0054 12A9     		add	r1, sp, #72
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 4
-
-
  124 0056 01EB4202 		add	r2, r1, r2, lsl #1
  125 005a 32F9402C 		ldrsh	r2, [r2, #-64]
  126 005e 07EE902A 		vmov	s15, r2	@ int
- 127              		.loc 1 41 50 discriminator 3 view .LVU38
+ 127              		.loc 1 42 50 discriminator 3 view .LVU38
  128 0062 F8EEE77A 		vcvt.f32.s32	s15, s15
- 129              		.loc 1 41 87 discriminator 3 view .LVU39
+ 129              		.loc 1 42 87 discriminator 3 view .LVU39
  130 0066 94ED0F7A 		vldr.32	s14, [r4, #60]
- 131              		.loc 1 41 15 discriminator 3 view .LVU40
+ 131              		.loc 1 42 15 discriminator 3 view .LVU40
  132 006a 04F11402 		add	r2, r4, #20
- 133              		.loc 1 41 36 discriminator 3 view .LVU41
+ 133              		.loc 1 42 36 discriminator 3 view .LVU41
  134 006e 02EB8302 		add	r2, r2, r3, lsl #2
- 135              		.loc 1 41 78 discriminator 3 view .LVU42
+ 135              		.loc 1 42 78 discriminator 3 view .LVU42
  136 0072 67EE877A 		vmul.f32	s15, s15, s14
- 137              		.loc 1 41 46 discriminator 3 view .LVU43
+ 137              		.loc 1 42 46 discriminator 3 view .LVU43
  138 0076 C2ED007A 		vstr.32	s15, [r2]
-  40:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
- 139              		.loc 1 40 35 is_stmt 1 discriminator 3 view .LVU44
-  40:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
- 140              		.loc 1 40 42 is_stmt 0 discriminator 3 view .LVU45
+  41:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
+ 139              		.loc 1 41 35 is_stmt 1 discriminator 3 view .LVU44
+  41:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
+ 140              		.loc 1 41 42 is_stmt 0 discriminator 3 view .LVU45
  141 007a 0133     		adds	r3, r3, #1
  142              	.LVL9:
  143              	.L8:
-  40:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
- 144              		.loc 1 40 24 is_stmt 1 discriminator 1 view .LVU46
-  40:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
- 145              		.loc 1 40 9 is_stmt 0 discriminator 1 view .LVU47
+  41:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
+ 144              		.loc 1 41 24 is_stmt 1 discriminator 1 view .LVU46
+  41:Src/BMX160.c  ****             *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv
+ 145              		.loc 1 41 9 is_stmt 0 discriminator 1 view .LVU47
  146 007c 022B     		cmp	r3, #2
  147 007e E8DD     		ble	.L9
-  42:Src/BMX160.c  ****         }
-  43:Src/BMX160.c  **** 
-  44:Src/BMX160.c  ****         //update of bias via a simple sum with the previous value
-  45:Src/BMX160.c  **** 
-  46:Src/BMX160.c  ****         //gyro bias update definition
-  47:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
- 148              		.loc 1 47 20 view .LVU48
+  43:Src/BMX160.c  ****         }
+  44:Src/BMX160.c  **** 
+  45:Src/BMX160.c  ****         //update of bias via a simple sum with the previous value
+  46:Src/BMX160.c  **** 
+  47:Src/BMX160.c  ****         //gyro bias update definition
+  48:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
+ 148              		.loc 1 48 20 view .LVU48
  149 0080 0023     		movs	r3, #0
  150              	.LVL10:
- 151              		.loc 1 47 20 view .LVU49
+ 151              		.loc 1 48 20 view .LVU49
  152 0082 0FE0     		b	.L10
  153              	.LVL11:
  154              	.L11:
-  48:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
- 155              		.loc 1 48 13 is_stmt 1 discriminator 3 view .LVU50
- 156              		.loc 1 48 61 is_stmt 0 discriminator 3 view .LVU51
+  49:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
+ 155              		.loc 1 49 13 is_stmt 1 discriminator 3 view .LVU50
+ 156              		.loc 1 49 61 is_stmt 0 discriminator 3 view .LVU51
  157 0084 9A1C     		adds	r2, r3, #2
  158 0086 04EB8202 		add	r2, r4, r2, lsl #2
  159 008a 92ED007A 		vldr.32	s14, [r2]
- 160              		.loc 1 48 44 discriminator 3 view .LVU52
+ 160              		.loc 1 49 44 discriminator 3 view .LVU52
  161 008e 03F11002 		add	r2, r3, #16
  162 0092 04EB8202 		add	r2, r4, r2, lsl #2
  163 0096 D2ED007A 		vldr.32	s15, [r2]
  164 009a 77EE877A 		vadd.f32	s15, s15, s14
  165 009e C2ED007A 		vstr.32	s15, [r2]
-  47:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
- 166              		.loc 1 47 35 is_stmt 1 discriminator 3 view .LVU53
-  47:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
- 167              		.loc 1 47 42 is_stmt 0 discriminator 3 view .LVU54
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 5
+  48:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
+ 166              		.loc 1 48 35 is_stmt 1 discriminator 3 view .LVU53
+  48:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 5
 
 
+ 167              		.loc 1 48 42 is_stmt 0 discriminator 3 view .LVU54
  168 00a2 0133     		adds	r3, r3, #1
  169              	.LVL12:
  170              	.L10:
-  47:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
- 171              		.loc 1 47 24 is_stmt 1 discriminator 1 view .LVU55
-  47:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
- 172              		.loc 1 47 9 is_stmt 0 discriminator 1 view .LVU56
+  48:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
+ 171              		.loc 1 48 24 is_stmt 1 discriminator 1 view .LVU55
+  48:Src/BMX160.c  ****             BMX_str->gyro_st_bias[i_count] += BMX_str->Omega[i_count];
+ 172              		.loc 1 48 9 is_stmt 0 discriminator 1 view .LVU56
  173 00a4 022B     		cmp	r3, #2
  174 00a6 EDDD     		ble	.L11
-  49:Src/BMX160.c  ****         }
-  50:Src/BMX160.c  **** 
-  51:Src/BMX160.c  ****         //acc bias update definition
-  52:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
- 175              		.loc 1 52 20 view .LVU57
+  50:Src/BMX160.c  ****         }
+  51:Src/BMX160.c  **** 
+  52:Src/BMX160.c  ****         //acc bias update definition
+  53:Src/BMX160.c  ****         for(i_count=0; i_count<3; i_count++){
+ 175              		.loc 1 53 20 view .LVU57
  176 00a8 0023     		movs	r3, #0
  177              	.LVL13:
- 178              		.loc 1 52 20 view .LVU58
+ 178              		.loc 1 53 20 view .LVU58
  179 00aa 0FE0     		b	.L12
  180              	.LVL14:
  181              	.L13:
-  53:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
- 182              		.loc 1 53 13 is_stmt 1 discriminator 3 view .LVU59
- 183              		.loc 1 53 67 is_stmt 0 discriminator 3 view .LVU60
+  54:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
+ 182              		.loc 1 54 13 is_stmt 1 discriminator 3 view .LVU59
+ 183              		.loc 1 54 67 is_stmt 0 discriminator 3 view .LVU60
  184 00ac 1A1D     		adds	r2, r3, #4
  185 00ae 04EB8202 		add	r2, r4, r2, lsl #2
  186 00b2 92ED017A 		vldr.32	s14, [r2, #4]
- 187              		.loc 1 53 43 discriminator 3 view .LVU61
+ 187              		.loc 1 54 43 discriminator 3 view .LVU61
  188 00b6 03F11202 		add	r2, r3, #18
  189 00ba 04EB8202 		add	r2, r4, r2, lsl #2
  190 00be D2ED017A 		vldr.32	s15, [r2, #4]
  191 00c2 77EE877A 		vadd.f32	s15, s15, s14
  192 00c6 C2ED017A 		vstr.32	s15, [r2, #4]
-  52:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
- 193              		.loc 1 52 35 is_stmt 1 discriminator 3 view .LVU62
-  52:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
- 194              		.loc 1 52 42 is_stmt 0 discriminator 3 view .LVU63
+  53:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
+ 193              		.loc 1 53 35 is_stmt 1 discriminator 3 view .LVU62
+  53:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
+ 194              		.loc 1 53 42 is_stmt 0 discriminator 3 view .LVU63
  195 00ca 0133     		adds	r3, r3, #1
  196              	.LVL15:
  197              	.L12:
-  52:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
- 198              		.loc 1 52 24 is_stmt 1 discriminator 1 view .LVU64
-  52:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
- 199              		.loc 1 52 9 is_stmt 0 discriminator 1 view .LVU65
+  53:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
+ 198              		.loc 1 53 24 is_stmt 1 discriminator 1 view .LVU64
+  53:Src/BMX160.c  ****             BMX_str->acc_st_bias[i_count] += BMX_str->Acceleration[i_count];
+ 199              		.loc 1 53 9 is_stmt 0 discriminator 1 view .LVU65
  200 00cc 022B     		cmp	r3, #2
  201 00ce EDDD     		ble	.L13
  202              	.LVL16:
  203              	.L14:
-  54:Src/BMX160.c  ****         }
-  55:Src/BMX160.c  **** 
-  56:Src/BMX160.c  ****         while(LL_TIM_GetCounter(TIM1)<10000){}
- 204              		.loc 1 56 46 is_stmt 1 discriminator 1 view .LVU66
- 205              		.loc 1 56 14 discriminator 1 view .LVU67
+  55:Src/BMX160.c  ****         }
+  56:Src/BMX160.c  **** 
+  57:Src/BMX160.c  ****         while(LL_TIM_GetCounter(TIM1)<10000){}
+ 204              		.loc 1 57 46 is_stmt 1 discriminator 1 view .LVU66
+ 205              		.loc 1 57 14 discriminator 1 view .LVU67
  206              	.LBB14:
  207              	.LBI14:
  208              		.file 2 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h"
    1:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 6
+
+
    2:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   ******************************************************************************
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 6
-
-
    3:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @file    stm32f7xx_ll_tim.h
    4:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @author  MCD Application Team
    5:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @brief   Header file of TIM LL module.
@@ -357,10 +358,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
   56:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   0x3CU    /* 8: TIMx_CH6  */
   57:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** };
   58:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 7
+
+
   59:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** static const uint8_t SHIFT_TAB_OCxx[] =
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 7
-
-
   60:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** {
   61:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   0U,            /* 0: OC1M, OC1FE, OC1PE */
   62:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   0U,            /* 1: - NA */
@@ -417,10 +418,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  113:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  114:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /* Private constants ---------------------------------------------------------*/
  115:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_Private_Constants TIM Private Constants
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 8
+
+
  116:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 8
-
-
  117:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  118:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  119:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #if   defined(TIM_BREAK_INPUT_SUPPORT)
@@ -477,10 +478,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  170:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH2N
  171:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3
  172:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH3N
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 9
+
+
  173:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH4
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 9
-
-
  174:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH5
  175:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CHANNEL_CH6
  176:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @retval none
@@ -537,10 +538,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  227:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                    Auto-Reload Register at the next update event.
  228:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                    This parameter must be a number between Min_Data=0x0000 and Max_
  229:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                    Some timer instances may support 32 bits counters. In that case 
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 10
+
+
  230:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 10
-
-
  231:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                    This feature can be modified afterwards using unitary function @
  232:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  233:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t ClockDivision;     /*!< Specifies the clock division.
@@ -597,10 +598,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  284:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  285:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t OCIdleState;   /*!< Specifies the TIM Output Compare pin state during Idle state.
  286:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                This parameter can be a value of @ref TIM_LL_EC_OCIDLESTATE.
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 11
+
+
  287:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 11
-
-
  288:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                This feature can be modified afterwards using unitary function @ref 
  289:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  290:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t OCNIdleState;  /*!< Specifies the TIM Output Compare pin state during Idle state.
@@ -657,10 +658,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  341:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_ACTIVEINPUT.
  342:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  343:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                  This feature can be modified afterwards using unitary function @re
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 12
+
+
  344:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 12
-
-
  345:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t IC1Prescaler;    /*!< Specifies the TI1 input prescaler value.
  346:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                  This parameter can be a value of @ref TIM_LL_EC_ICPSC.
  347:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
@@ -717,10 +718,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  398:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                     This feature can be modified afterwards using unitary function 
  399:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  400:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t CommutationDelay;   /*!< Specifies the compare value to be loaded into the Capture Compa
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 13
+
+
  401:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                     A positive pulse (TRGO event) is generated with a programmable 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 13
-
-
  402:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                     a change occurs on the Hall inputs.
  403:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                     This parameter can be a number between Min_Data = 0x0000 and Ma
  404:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
@@ -777,10 +778,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  455:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   uint32_t BreakFilter;          /*!< Specifies the TIM Break Filter.
  456:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                       This parameter can be a value of @ref TIM_LL_EC_BREAK_FILTER
  457:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 14
+
+
  458:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                       This feature can be modified afterwards using unitary functio
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 14
-
-
  459:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  460:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****                                       @note This bit-field can not be modified as long as LOCK leve
  461:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
@@ -837,10 +838,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  512:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_COMIF                        TIM_SR_COMIF         /*!< COM interrupt flag */
  513:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_TIF                          TIM_SR_TIF           /*!< Trigger interrupt flag */
  514:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_BIF                          TIM_SR_BIF           /*!< Break interrupt flag */
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 15
+
+
  515:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_B2IF                         TIM_SR_B2IF          /*!< Second break interrupt fla
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 15
-
-
  516:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_CC1OF                        TIM_SR_CC1OF         /*!< Capture/Compare 1 overcapt
  517:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_CC2OF                        TIM_SR_CC2OF         /*!< Capture/Compare 2 overcapt
  518:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_SR_CC3OF                        TIM_SR_CC3OF         /*!< Capture/Compare 3 overcapt
@@ -897,10 +898,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  569:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  570:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_UPDATESOURCE Update Source
  571:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 16
+
+
  572:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 16
-
-
  573:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_UPDATESOURCE_REGULAR            0x00000000U          /*!< Counter overflow/underflow
  574:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_UPDATESOURCE_COUNTER            TIM_CR1_URS          /*!< Only counter overflow/unde
  575:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
@@ -957,10 +958,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  626:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  627:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  628:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_CCDMAREQUEST Capture Compare DMA Request
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 17
+
+
  629:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 17
-
-
  630:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  631:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_CCDMAREQUEST_CC                 0x00000000U          /*!< CCx DMA request sent when 
  632:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_CCDMAREQUEST_UPDATE             TIM_CR2_CCDS         /*!< CCx DMA requests sent when
@@ -1017,10 +1018,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  683:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_FORCED_ACTIVE            (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_0)               
  684:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_PWM1                     (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1)               
  685:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_PWM2                     (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 18
+
+
  686:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_RETRIG_OPM1              TIM_CCMR1_OC1M_3                                    
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 18
-
-
  687:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_RETRIG_OPM2              (TIM_CCMR1_OC1M_3 | TIM_CCMR1_OC1M_0)               
  688:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_COMBINED_PWM1            (TIM_CCMR1_OC1M_3 | TIM_CCMR1_OC1M_2)               
  689:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_OCMODE_COMBINED_PWM2            (TIM_CCMR1_OC1M_3 | TIM_CCMR1_OC1M_0 | TIM_CCMR1_OC1
@@ -1077,10 +1078,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  740:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV4                      (TIM_CCMR1_IC1PSC_1 << 16U)    /*!< Capture is done 
  741:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_ICPSC_DIV8                      (TIM_CCMR1_IC1PSC << 16U)      /*!< Capture is done 
  742:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 19
+
+
  743:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 19
-
-
  744:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  745:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  746:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_IC_FILTER Input Configuration Filter
@@ -1137,10 +1138,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  797:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  798:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  799:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_TRGO Trigger Output
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 20
+
+
  800:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 20
-
-
  801:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  802:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TRGO_RESET                      0x00000000U                                     /*!<
  803:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TRGO_ENABLE                     TIM_CR2_MMS_0                                   /*!<
@@ -1197,10 +1198,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  854:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_ITR2                         TIM_SMCR_TS_1                                       
  855:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_ITR3                         (TIM_SMCR_TS_0 | TIM_SMCR_TS_1)                     
  856:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_TI1F_ED                      TIM_SMCR_TS_2                                       
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 21
+
+
  857:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_TI1FP1                       (TIM_SMCR_TS_2 | TIM_SMCR_TS_0)                     
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 21
-
-
  858:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_TI2FP2                       (TIM_SMCR_TS_2 | TIM_SMCR_TS_1)                     
  859:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TS_ETRF                         (TIM_SMCR_TS_2 | TIM_SMCR_TS_1 | TIM_SMCR_TS_0)     
  860:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
@@ -1257,10 +1258,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  911:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_BREAK_POLARITY_LOW              0x00000000U               /*!< Break input BRK is ac
  912:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_BREAK_POLARITY_HIGH             TIM_BDTR_BKP              /*!< Break input BRK is ac
  913:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 22
+
+
  914:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 22
-
-
  915:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
  916:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
  917:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_BREAK_FILTER break filter
@@ -1317,10 +1318,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  968:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
  969:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
  970:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 23
+
+
  971:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 23
-
-
  972:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EC_OSSI OSSI
  973:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
  974:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
@@ -1377,10 +1378,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1025:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_DIER          (TIM_DCR_DBA_1 |  TIM_DCR_DBA_0)                    
 1026:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_SR            TIM_DCR_DBA_2                                       
 1027:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_EGR           (TIM_DCR_DBA_2 | TIM_DCR_DBA_0)                     
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 24
+
+
 1028:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCMR1         (TIM_DCR_DBA_2 | TIM_DCR_DBA_1)                     
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 24
-
-
 1029:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCMR2         (TIM_DCR_DBA_2 | TIM_DCR_DBA_1 | TIM_DCR_DBA_0)     
 1030:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CCER          TIM_DCR_DBA_3                                       
 1031:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_DMABURST_BASEADDR_CNT           (TIM_DCR_DBA_3 | TIM_DCR_DBA_0)                     
@@ -1437,10 +1438,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1082:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TIM2_ITR1_RMP_ETH_PTP      (TIM2_OR_ITR1_RMP_0 | TIM2_OR_RMP_MASK)    /*!< TIM2_ITR1
 1083:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TIM2_ITR1_RMP_OTG_FS_SOF   (TIM2_OR_ITR1_RMP_1 | TIM2_OR_RMP_MASK)    /*!< TIM2_ITR1
 1084:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_TIM2_ITR1_RMP_OTG_HS_SOF   (TIM2_OR_ITR1_RMP | TIM2_OR_RMP_MASK)      /*!< TIM2_ITR1
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 25
+
+
 1085:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 25
-
-
 1086:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
 1087:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
 1088:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
@@ -1497,10 +1498,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1139:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @param  __REG__ Register to be read
 1140:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @retval Register value
 1141:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 26
+
+
 1142:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define LL_TIM_ReadReg(__INSTANCE__, __REG__) READ_REG((__INSTANCE__)->__REG__)
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 26
-
-
 1143:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
 1144:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @}
 1145:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
@@ -1557,10 +1558,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1196:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @retval  Auto-reload value  (between Min_Data=0 and Max_Data=65535)
 1197:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
 1198:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** #define __LL_TIM_CALC_ARR(__TIMCLK__, __PSC__, __FREQ__) \
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 27
+
+
 1199:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****      ((((__TIMCLK__)/((__PSC__) + 1U)) >= (__FREQ__)) ? (((__TIMCLK__)/((__FREQ__) * ((__PSC__) + 1
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 27
-
-
 1200:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
 1201:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
 1202:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @brief  HELPER macro calculating the compare value required to achieve the required timer outpu
@@ -1617,10 +1618,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1253:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
 1254:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /** @defgroup TIM_LL_EF_Time_Base Time Base configuration
 1255:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @{
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 28
+
+
 1256:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   */
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 28
-
-
 1257:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
 1258:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @brief  Enable timer counter.
 1259:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @rmtoll CR1          CEN           LL_TIM_EnableCounter
@@ -1677,10 +1678,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1310:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
 1311:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
 1312:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 29
+
+
 1313:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @brief  Indicates whether update event generation is enabled.
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 29
-
-
 1314:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @rmtoll CR1          UDIS          LL_TIM_IsEnabledUpdateEvent
 1315:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @param  TIMx Timer instance
 1316:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @retval Inverted state of bit (0 or 1).
@@ -1737,10 +1738,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1367:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** {
 1368:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   MODIFY_REG(TIMx->CR1, TIM_CR1_OPM, OnePulseMode);
 1369:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 30
+
+
 1370:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 30
-
-
 1371:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
 1372:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @brief  Get actual one pulse mode.
 1373:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @rmtoll CR1          OPM           LL_TIM_GetOnePulseMode
@@ -1797,10 +1798,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1424:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** {
 1425:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   return (uint32_t)(READ_BIT(TIMx->CR1, TIM_CR1_DIR | TIM_CR1_CMS));
 1426:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 31
+
+
 1427:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** 
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 31
-
-
 1428:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** /**
 1429:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @brief  Enable auto-reload (ARR) preload.
 1430:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @rmtoll CR1          ARPE          LL_TIM_EnableARRPreload
@@ -1857,10 +1858,10 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
 1481:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @note Macro @ref IS_TIM_CLOCK_DIVISION_INSTANCE(TIMx) can be used to check
 1482:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *       whether or not the clock division feature is supported by the timer
 1483:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *       instance.
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 32
+
+
 1484:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @rmtoll CR1          CKD           LL_TIM_GetClockDivision
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 32
-
-
 1485:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @param  TIMx Timer instance
 1486:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   * @retval Returned value can be one of the following values:
 1487:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h ****   *         @arg @ref LL_TIM_CLOCKDIVISION_DIV1
@@ -1907,28 +1908,28 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  216              		.loc 2 1520 10 discriminator 1 view .LVU71
  217              	.LBE15:
  218              	.LBE14:
- 219              		.loc 1 56 14 discriminator 1 view .LVU72
+ 219              		.loc 1 57 14 discriminator 1 view .LVU72
  220 00d4 42F20F73 		movw	r3, #9999
  221 00d8 9A42     		cmp	r2, r3
  222 00da F9D9     		bls	.L14
-  18:Src/BMX160.c  **** 
- 223              		.loc 1 18 44 is_stmt 1 discriminator 2 view .LVU73
-  18:Src/BMX160.c  **** 
- 224              		.loc 1 18 54 is_stmt 0 discriminator 2 view .LVU74
+  19:Src/BMX160.c  **** 
+ 223              		.loc 1 19 44 is_stmt 1 discriminator 2 view .LVU73
+  19:Src/BMX160.c  **** 
+ 224              		.loc 1 19 54 is_stmt 0 discriminator 2 view .LVU74
  225 00dc 0135     		adds	r5, r5, #1
  226              	.LVL18:
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 33
+
+
  227              	.L2:
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 33
-
-
-  18:Src/BMX160.c  **** 
- 228              		.loc 1 18 27 is_stmt 1 discriminator 1 view .LVU75
-  18:Src/BMX160.c  **** 
- 229              		.loc 1 18 5 is_stmt 0 discriminator 1 view .LVU76
+  19:Src/BMX160.c  **** 
+ 228              		.loc 1 19 27 is_stmt 1 discriminator 1 view .LVU75
+  19:Src/BMX160.c  **** 
+ 229              		.loc 1 19 5 is_stmt 0 discriminator 1 view .LVU76
  230 00de B5F5FA6F 		cmp	r5, #2000
  231 00e2 1ADA     		bge	.L19
-  21:Src/BMX160.c  **** 
- 232              		.loc 1 21 9 is_stmt 1 view .LVU77
+  22:Src/BMX160.c  **** 
+ 232              		.loc 1 22 9 is_stmt 1 view .LVU77
  233              	.LVL19:
  234              	.LBB16:
  235              	.LBI16:
@@ -1945,8 +1946,8 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  243              		.loc 2 1507 3 is_stmt 0 view .LVU80
  244              	.LBE17:
  245              	.LBE16:
-  24:Src/BMX160.c  ****         //wait 5 us
- 246              		.loc 1 24 9 is_stmt 1 view .LVU81
+  25:Src/BMX160.c  ****         //wait 5 us
+ 246              		.loc 1 25 9 is_stmt 1 view .LVU81
  247 00ea 4FF0FF33 		mov	r3, #-1
  248 00ee 0093     		str	r3, [sp]
  249 00f0 0123     		movs	r3, #1
@@ -1955,13 +1956,13 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  252 00f6 2068     		ldr	r0, [r4]
  253 00f8 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
  254              	.LVL21:
-  26:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
- 255              		.loc 1 26 9 view .LVU82
+  27:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
+ 255              		.loc 1 27 9 view .LVU82
  256              	.L3:
-  26:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
- 257              		.loc 1 26 43 discriminator 1 view .LVU83
-  26:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
- 258              		.loc 1 26 14 discriminator 1 view .LVU84
+  27:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
+ 257              		.loc 1 27 43 discriminator 1 view .LVU83
+  27:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
+ 258              		.loc 1 27 14 discriminator 1 view .LVU84
  259              	.LBB18:
  260              	.LBI18:
 1518:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** {
@@ -1975,15 +1976,15 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  268              		.loc 2 1520 10 discriminator 1 view .LVU88
  269              	.LBE19:
  270              	.LBE18:
-  26:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
- 271              		.loc 1 26 14 discriminator 1 view .LVU89
+  27:Src/BMX160.c  ****         HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DE
+ 271              		.loc 1 27 14 discriminator 1 view .LVU89
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 34
+
+
  272 0100 182B     		cmp	r3, #24
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 34
-
-
  273 0102 FBD9     		bls	.L3
-  27:Src/BMX160.c  **** 
- 274              		.loc 1 27 9 is_stmt 1 view .LVU90
+  28:Src/BMX160.c  **** 
+ 274              		.loc 1 28 9 is_stmt 1 view .LVU90
  275 0104 4FF0FF33 		mov	r3, #-1
  276 0108 0093     		str	r3, [sp]
  277 010a 0C23     		movs	r3, #12
@@ -1992,98 +1993,77 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  280 0110 2068     		ldr	r0, [r4]
  281 0112 FFF7FEFF 		bl	HAL_I2C_Master_Receive
  282              	.LVL23:
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 283              		.loc 1 30 9 view .LVU91
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 284              		.loc 1 30 20 is_stmt 0 view .LVU92
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 283              		.loc 1 31 9 view .LVU91
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 284              		.loc 1 31 20 is_stmt 0 view .LVU92
  285 0116 0023     		movs	r3, #0
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 286              		.loc 1 30 9 view .LVU93
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 286              		.loc 1 31 9 view .LVU93
  287 0118 7FE7     		b	.L4
  288              	.LVL24:
  289              	.L19:
-  30:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 290              		.loc 1 30 9 view .LVU94
+  31:Src/BMX160.c  ****             *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 290              		.loc 1 31 9 view .LVU94
  291              	.LBE13:
-  57:Src/BMX160.c  ****     }
-  58:Src/BMX160.c  **** 
-  59:Src/BMX160.c  ****     //average the bias value evaluated
-  60:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
- 292              		.loc 1 60 16 view .LVU95
+  58:Src/BMX160.c  ****     }
+  59:Src/BMX160.c  **** 
+  60:Src/BMX160.c  ****     //average the bias value evaluated
+  61:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
+ 292              		.loc 1 61 16 view .LVU95
  293 011a 0023     		movs	r3, #0
  294 011c 16E0     		b	.L16
  295              	.LVL25:
  296              	.L17:
-  61:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
- 297              		.loc 1 61 9 is_stmt 1 discriminator 3 view .LVU96
- 298              		.loc 1 61 63 is_stmt 0 discriminator 3 view .LVU97
+  62:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
+ 297              		.loc 1 62 9 is_stmt 1 discriminator 3 view .LVU96
+ 298              		.loc 1 62 63 is_stmt 0 discriminator 3 view .LVU97
  299 011e 03F11002 		add	r2, r3, #16
  300 0122 04EB8202 		add	r2, r4, r2, lsl #2
  301 0126 D2ED006A 		vldr.32	s13, [r2]
- 302              		.loc 1 61 72 discriminator 3 view .LVU98
+ 302              		.loc 1 62 72 discriminator 3 view .LVU98
  303 012a DFED0F7A 		vldr.32	s15, .L20+4
  304 012e 86EEA77A 		vdiv.f32	s14, s13, s15
- 305              		.loc 1 61 40 discriminator 3 view .LVU99
+ 305              		.loc 1 62 40 discriminator 3 view .LVU99
  306 0132 82ED007A 		vstr.32	s14, [r2]
-  62:Src/BMX160.c  ****         BMX_str->acc_st_bias[i_count] = BMX_str->acc_st_bias[i_count]/2000.0f;
- 307              		.loc 1 62 9 is_stmt 1 discriminator 3 view .LVU100
- 308              		.loc 1 62 61 is_stmt 0 discriminator 3 view .LVU101
+  63:Src/BMX160.c  ****         BMX_str->acc_st_bias[i_count] = BMX_str->acc_st_bias[i_count]/2000.0f;
+ 307              		.loc 1 63 9 is_stmt 1 discriminator 3 view .LVU100
+ 308              		.loc 1 63 61 is_stmt 0 discriminator 3 view .LVU101
  309 0136 03F11202 		add	r2, r3, #18
  310 013a 04EB8202 		add	r2, r4, r2, lsl #2
  311 013e D2ED016A 		vldr.32	s13, [r2, #4]
- 312              		.loc 1 62 70 discriminator 3 view .LVU102
+ 312              		.loc 1 63 70 discriminator 3 view .LVU102
  313 0142 86EEA77A 		vdiv.f32	s14, s13, s15
- 314              		.loc 1 62 39 discriminator 3 view .LVU103
+ 314              		.loc 1 63 39 discriminator 3 view .LVU103
  315 0146 82ED017A 		vstr.32	s14, [r2, #4]
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
- 316              		.loc 1 60 31 is_stmt 1 discriminator 3 view .LVU104
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 35
+  61:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
+ 316              		.loc 1 61 31 is_stmt 1 discriminator 3 view .LVU104
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 35
 
 
- 317              		.loc 1 60 38 is_stmt 0 discriminator 3 view .LVU105
+  61:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
+ 317              		.loc 1 61 38 is_stmt 0 discriminator 3 view .LVU105
  318 014a 0133     		adds	r3, r3, #1
  319              	.LVL26:
  320              	.L16:
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
- 321              		.loc 1 60 20 is_stmt 1 discriminator 1 view .LVU106
-  60:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
- 322              		.loc 1 60 5 is_stmt 0 discriminator 1 view .LVU107
+  61:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
+ 321              		.loc 1 61 20 is_stmt 1 discriminator 1 view .LVU106
+  61:Src/BMX160.c  ****         BMX_str->gyro_st_bias[i_count] = BMX_str->gyro_st_bias[i_count]/2000.0f;
+ 322              		.loc 1 61 5 is_stmt 0 discriminator 1 view .LVU107
  323 014c 022B     		cmp	r3, #2
  324 014e E6DD     		ble	.L17
-  63:Src/BMX160.c  ****     }
-  64:Src/BMX160.c  ****     /*sprintf((char*)buff, "cal. cplt.\n\r");
-  65:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
-  66:Src/BMX160.c  **** 
-  67:Src/BMX160.c  ****     sprintf((char*)buff, "gyrX= %f\n\r", BMX_str->gyro_st_bias[0]);
-  68:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
-  69:Src/BMX160.c  **** 
-  70:Src/BMX160.c  ****     sprintf((char*)buff, "gyrY= %f\n\r", BMX_str->gyro_st_bias[1]);
-  71:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
-  72:Src/BMX160.c  **** 
-  73:Src/BMX160.c  ****     sprintf((char*)buff, "gyrZ= %f\n\r", BMX_str->gyro_st_bias[2]);
-  74:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
-  75:Src/BMX160.c  **** 
-  76:Src/BMX160.c  ****     sprintf((char*)buff, "accX= %f\n\r", BMX_str->acc_st_bias[0]);
-  77:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
-  78:Src/BMX160.c  **** 
-  79:Src/BMX160.c  ****     sprintf((char*)buff, "accY= %f\n\r", BMX_str->acc_st_bias[1]);
-  80:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
-  81:Src/BMX160.c  **** 
-  82:Src/BMX160.c  ****     sprintf((char*)buff, "accZ= %f\n\r", BMX_str->acc_st_bias[2]);
-  83:Src/BMX160.c  ****     HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
-  84:Src/BMX160.c  ****     */
-  85:Src/BMX160.c  ****      
-  86:Src/BMX160.c  ****     BMX_str->acc_st_bias[2] += 1.0f; //subtracting 1 g to the average of Z acc reading
- 325              		.loc 1 86 5 is_stmt 1 view .LVU108
- 326              		.loc 1 86 29 is_stmt 0 view .LVU109
+  64:Src/BMX160.c  ****     }
+  65:Src/BMX160.c  ****      
+  66:Src/BMX160.c  ****     BMX_str->acc_st_bias[2] += 1.0f; //subtracting 1 g to the average of Z acc reading
+ 325              		.loc 1 66 5 is_stmt 1 view .LVU108
+ 326              		.loc 1 66 29 is_stmt 0 view .LVU109
  327 0150 D4ED157A 		vldr.32	s15, [r4, #84]
  328 0154 B7EE007A 		vmov.f32	s14, #1.0e+0
  329 0158 77EE877A 		vadd.f32	s15, s15, s14
  330 015c C4ED157A 		vstr.32	s15, [r4, #84]
-  87:Src/BMX160.c  **** 
-  88:Src/BMX160.c  **** }
- 331              		.loc 1 88 1 view .LVU110
+  67:Src/BMX160.c  **** 
+  68:Src/BMX160.c  **** }
+ 331              		.loc 1 68 1 view .LVU110
  332 0160 13B0     		add	sp, sp, #76
  333              	.LCFI2:
  334              		.cfi_def_cfa_offset 12
@@ -2091,16 +2071,13 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  336 0162 30BD     		pop	{r4, r5, pc}
  337              	.LVL27:
  338              	.L21:
- 339              		.loc 1 88 1 view .LVU111
+ 339              		.loc 1 68 1 view .LVU111
  340              		.align	2
  341              	.L20:
  342 0164 00000140 		.word	1073807360
  343 0168 0000FA44 		.word	1157234688
  344              		.cfi_endproc
  345              	.LFE851:
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 36
-
-
  347              		.section	.text.BMX_read,"ax",%progbits
  348              		.align	1
  349              		.global	BMX_read
@@ -2111,268 +2088,492 @@ ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 1
  355              	BMX_read:
  356              	.LVL28:
  357              	.LFB852:
-  89:Src/BMX160.c  ****  
-  90:Src/BMX160.c  **** void BMX_read(BMX_IMU_typedef *BMX_str){
- 358              		.loc 1 90 40 is_stmt 1 view -0
+  69:Src/BMX160.c  ****  
+  70:Src/BMX160.c  **** void BMX_read(BMX_IMU_typedef *BMX_str){
+ 358              		.loc 1 70 40 is_stmt 1 view -0
  359              		.cfi_startproc
  360              		@ args = 0, pretend = 0, frame = 64
  361              		@ frame_needed = 0, uses_anonymous_args = 0
- 362              		.loc 1 90 40 is_stmt 0 view .LVU113
+ 362              		.loc 1 70 40 is_stmt 0 view .LVU113
  363 0000 10B5     		push	{r4, lr}
  364              	.LCFI3:
  365              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 36
+
+
  366              		.cfi_offset 4, -8
  367              		.cfi_offset 14, -4
  368 0002 92B0     		sub	sp, sp, #72
  369              	.LCFI4:
  370              		.cfi_def_cfa_offset 80
  371 0004 0446     		mov	r4, r0
-  91:Src/BMX160.c  **** 
-  92:Src/BMX160.c  ****     uint8_t tx_buff[4]; //buffer for transmit bytes
- 372              		.loc 1 92 5 is_stmt 1 view .LVU114
-  93:Src/BMX160.c  ****     uint8_t data_buffer[48]; //buffer for received data
- 373              		.loc 1 93 5 view .LVU115
-  94:Src/BMX160.c  ****     int16_t raw_data[6]; 
- 374              		.loc 1 94 5 view .LVU116
-  95:Src/BMX160.c  ****     int i_count;
- 375              		.loc 1 95 5 view .LVU117
-  96:Src/BMX160.c  ****     
-  97:Src/BMX160.c  ****     //polling for data giving the first reg and ack for receiving that and the following 11 reg
-  98:Src/BMX160.c  ****     tx_buff[0] = GYRO_XLSB_REG;
- 376              		.loc 1 98 5 view .LVU118
- 377              		.loc 1 98 16 is_stmt 0 view .LVU119
- 378 0006 0C23     		movs	r3, #12
- 379 0008 8DF84430 		strb	r3, [sp, #68]
-  99:Src/BMX160.c  ****     HAL_I2C_Master_Transmit(BMX_str->i2c_handler_ptr, BMX160Address, tx_buff, 1, HAL_MAX_DELAY); //
- 380              		.loc 1 99 5 is_stmt 1 view .LVU120
- 381 000c 4FF0FF33 		mov	r3, #-1
- 382 0010 0093     		str	r3, [sp]
- 383 0012 0123     		movs	r3, #1
- 384 0014 11AA     		add	r2, sp, #68
- 385 0016 D021     		movs	r1, #208
- 386 0018 0068     		ldr	r0, [r0]
- 387              	.LVL29:
- 388              		.loc 1 99 5 is_stmt 0 view .LVU121
- 389 001a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 390              	.LVL30:
- 100:Src/BMX160.c  ****     //wait 5 us
- 101:Src/BMX160.c  ****     LL_TIM_SetCounter(TIM1, 0);
- 391              		.loc 1 101 5 is_stmt 1 view .LVU122
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 37
+  71:Src/BMX160.c  **** 
+  72:Src/BMX160.c  ****     uint8_t tx_buff[4]; //buffer for transmit bytes
+ 372              		.loc 1 72 5 is_stmt 1 view .LVU114
+  73:Src/BMX160.c  ****     uint8_t data_buffer[48]; //buffer for received data
+ 373              		.loc 1 73 5 view .LVU115
+  74:Src/BMX160.c  ****     int16_t raw_data[6]; 
+ 374              		.loc 1 74 5 view .LVU116
+  75:Src/BMX160.c  ****     int i_count;
+ 375              		.loc 1 75 5 view .LVU117
+  76:Src/BMX160.c  **** 
+  77:Src/BMX160.c  ****     //update of previous values before the reading
+  78:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
+ 376              		.loc 1 78 5 view .LVU118
+ 377              	.LVL29:
+ 378              		.loc 1 78 16 is_stmt 0 view .LVU119
+ 379 0006 0023     		movs	r3, #0
+ 380              		.loc 1 78 5 view .LVU120
+ 381 0008 12E0     		b	.L23
+ 382              	.LVL30:
+ 383              	.L24:
+  79:Src/BMX160.c  ****         BMX_str->Acceleration_1[i_count] = BMX_str->Acceleration[i_count];
+ 384              		.loc 1 79 9 is_stmt 1 discriminator 3 view .LVU121
+ 385              		.loc 1 79 65 is_stmt 0 discriminator 3 view .LVU122
+ 386 000a 1A1D     		adds	r2, r3, #4
+ 387 000c 04EB8202 		add	r2, r4, r2, lsl #2
+ 388 0010 5168     		ldr	r1, [r2, #4]	@ float
+ 389              		.loc 1 79 42 discriminator 3 view .LVU123
+ 390 0012 03F10A02 		add	r2, r3, #10
+ 391 0016 04EB8202 		add	r2, r4, r2, lsl #2
+ 392 001a 5160     		str	r1, [r2, #4]	@ float
+  80:Src/BMX160.c  ****         BMX_str->Omega_1[i_count] = BMX_str->Omega[i_count];
+ 393              		.loc 1 80 9 is_stmt 1 discriminator 3 view .LVU124
+ 394              		.loc 1 80 51 is_stmt 0 discriminator 3 view .LVU125
+ 395 001c 9A1C     		adds	r2, r3, #2
+ 396 001e 04EB8202 		add	r2, r4, r2, lsl #2
+ 397 0022 1168     		ldr	r1, [r2]	@ float
+ 398              		.loc 1 80 35 discriminator 3 view .LVU126
+ 399 0024 03F10802 		add	r2, r3, #8
+ 400 0028 04EB8202 		add	r2, r4, r2, lsl #2
+ 401 002c 1160     		str	r1, [r2]	@ float
+  78:Src/BMX160.c  ****         BMX_str->Acceleration_1[i_count] = BMX_str->Acceleration[i_count];
+ 402              		.loc 1 78 31 is_stmt 1 discriminator 3 view .LVU127
+  78:Src/BMX160.c  ****         BMX_str->Acceleration_1[i_count] = BMX_str->Acceleration[i_count];
+ 403              		.loc 1 78 38 is_stmt 0 discriminator 3 view .LVU128
+ 404 002e 0133     		adds	r3, r3, #1
+ 405              	.LVL31:
+ 406              	.L23:
+  78:Src/BMX160.c  ****         BMX_str->Acceleration_1[i_count] = BMX_str->Acceleration[i_count];
+ 407              		.loc 1 78 20 is_stmt 1 discriminator 1 view .LVU129
+  78:Src/BMX160.c  ****         BMX_str->Acceleration_1[i_count] = BMX_str->Acceleration[i_count];
+ 408              		.loc 1 78 5 is_stmt 0 discriminator 1 view .LVU130
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 37
 
 
- 392              	.LBB20:
- 393              	.LBI20:
+ 409 0030 022B     		cmp	r3, #2
+ 410 0032 EADD     		ble	.L24
+  81:Src/BMX160.c  ****     }
+  82:Src/BMX160.c  ****     
+  83:Src/BMX160.c  ****     //polling for data giving the first reg and ack for receiving that and the following 11 reg
+  84:Src/BMX160.c  ****     tx_buff[0] = GYRO_XLSB_REG;
+ 411              		.loc 1 84 5 is_stmt 1 view .LVU131
+ 412              		.loc 1 84 16 is_stmt 0 view .LVU132
+ 413 0034 0C23     		movs	r3, #12
+ 414              	.LVL32:
+ 415              		.loc 1 84 16 view .LVU133
+ 416 0036 8DF84430 		strb	r3, [sp, #68]
+  85:Src/BMX160.c  ****     HAL_I2C_Master_Transmit(BMX_str->i2c_handler_ptr, BMX160Address, tx_buff, 1, HAL_MAX_DELAY); //
+ 417              		.loc 1 85 5 is_stmt 1 view .LVU134
+ 418 003a 4FF0FF33 		mov	r3, #-1
+ 419 003e 0093     		str	r3, [sp]
+ 420 0040 0123     		movs	r3, #1
+ 421 0042 11AA     		add	r2, sp, #68
+ 422 0044 D021     		movs	r1, #208
+ 423 0046 2068     		ldr	r0, [r4]
+ 424              	.LVL33:
+ 425              		.loc 1 85 5 is_stmt 0 view .LVU135
+ 426 0048 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 427              	.LVL34:
+  86:Src/BMX160.c  ****     //wait 5 us
+  87:Src/BMX160.c  ****     LL_TIM_SetCounter(TIM1, 0);
+ 428              		.loc 1 87 5 is_stmt 1 view .LVU136
+ 429              	.LBB20:
+ 430              	.LBI20:
 1505:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** {
- 394              		.loc 2 1505 22 view .LVU123
- 395              	.LBB21:
+ 431              		.loc 2 1505 22 view .LVU137
+ 432              	.LBB21:
 1507:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
- 396              		.loc 2 1507 3 view .LVU124
- 397 001e 264B     		ldr	r3, .L31
- 398 0020 0022     		movs	r2, #0
- 399 0022 5A62     		str	r2, [r3, #36]
- 400              	.LVL31:
- 401              	.L23:
+ 433              		.loc 2 1507 3 view .LVU138
+ 434 004c 2D4B     		ldr	r3, .L33
+ 435 004e 0022     		movs	r2, #0
+ 436 0050 5A62     		str	r2, [r3, #36]
+ 437              	.LVL35:
+ 438              	.L25:
 1507:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** }
- 402              		.loc 2 1507 3 is_stmt 0 view .LVU125
- 403              	.LBE21:
- 404              	.LBE20:
- 102:Src/BMX160.c  ****     while(LL_TIM_GetCounter(TIM1)<5){}
- 405              		.loc 1 102 38 is_stmt 1 discriminator 1 view .LVU126
- 406              		.loc 1 102 10 discriminator 1 view .LVU127
- 407              	.LBB22:
- 408              	.LBI22:
+ 439              		.loc 2 1507 3 is_stmt 0 view .LVU139
+ 440              	.LBE21:
+ 441              	.LBE20:
+  88:Src/BMX160.c  ****     while(LL_TIM_GetCounter(TIM1)<4){}
+ 442              		.loc 1 88 38 is_stmt 1 discriminator 1 view .LVU140
+ 443              		.loc 1 88 10 discriminator 1 view .LVU141
+ 444              	.LBB22:
+ 445              	.LBI22:
 1518:Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_tim.h **** {
- 409              		.loc 2 1518 26 discriminator 1 view .LVU128
- 410              	.LBB23:
- 411              		.loc 2 1520 3 discriminator 1 view .LVU129
- 412              		.loc 2 1520 10 is_stmt 0 discriminator 1 view .LVU130
- 413 0024 244B     		ldr	r3, .L31
- 414 0026 5B6A     		ldr	r3, [r3, #36]
- 415              	.LVL32:
- 416              		.loc 2 1520 10 discriminator 1 view .LVU131
- 417              	.LBE23:
- 418              	.LBE22:
- 419              		.loc 1 102 10 discriminator 1 view .LVU132
- 420 0028 042B     		cmp	r3, #4
- 421 002a FBD9     		bls	.L23
- 103:Src/BMX160.c  ****     HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DELAY)
- 422              		.loc 1 103 5 is_stmt 1 view .LVU133
- 423 002c 4FF0FF33 		mov	r3, #-1
- 424 0030 0093     		str	r3, [sp]
- 425 0032 0C23     		movs	r3, #12
- 426 0034 05AA     		add	r2, sp, #20
- 427 0036 D021     		movs	r1, #208
- 428 0038 2068     		ldr	r0, [r4]
- 429 003a FFF7FEFF 		bl	HAL_I2C_Master_Receive
- 430              	.LVL33:
- 104:Src/BMX160.c  **** 
- 105:Src/BMX160.c  ****     //data unpack
- 106:Src/BMX160.c  ****     for(i_count=0; i_count<12; i_count++){
- 431              		.loc 1 106 5 view .LVU134
- 432              		.loc 1 106 16 is_stmt 0 view .LVU135
- 433 003e 0023     		movs	r3, #0
- 434              		.loc 1 106 5 view .LVU136
- 435 0040 04E0     		b	.L24
- 436              	.LVL34:
- 437              	.L25:
- 107:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 438              		.loc 1 107 9 is_stmt 1 discriminator 3 view .LVU137
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 38
+ 446              		.loc 2 1518 26 discriminator 1 view .LVU142
+ 447              	.LBB23:
+ 448              		.loc 2 1520 3 discriminator 1 view .LVU143
+ 449              		.loc 2 1520 10 is_stmt 0 discriminator 1 view .LVU144
+ 450 0052 2C4B     		ldr	r3, .L33
+ 451 0054 5B6A     		ldr	r3, [r3, #36]
+ 452              	.LVL36:
+ 453              		.loc 2 1520 10 discriminator 1 view .LVU145
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 38
 
 
- 439              		.loc 1 107 41 is_stmt 0 discriminator 3 view .LVU138
- 440 0042 05AA     		add	r2, sp, #20
- 441 0044 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
- 442              		.loc 1 107 39 discriminator 3 view .LVU139
- 443 0046 02AA     		add	r2, sp, #8
- 444 0048 D154     		strb	r1, [r2, r3]
- 106:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 445              		.loc 1 106 32 is_stmt 1 discriminator 3 view .LVU140
- 106:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 446              		.loc 1 106 39 is_stmt 0 discriminator 3 view .LVU141
- 447 004a 0133     		adds	r3, r3, #1
- 448              	.LVL35:
- 449              	.L24:
- 106:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 450              		.loc 1 106 20 is_stmt 1 discriminator 1 view .LVU142
- 106:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
- 451              		.loc 1 106 5 is_stmt 0 discriminator 1 view .LVU143
- 452 004c 0B2B     		cmp	r3, #11
- 453 004e F8DD     		ble	.L25
- 108:Src/BMX160.c  ****     }
- 109:Src/BMX160.c  **** 
- 110:Src/BMX160.c  ****     //gyro data definition
- 111:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
- 454              		.loc 1 111 16 view .LVU144
- 455 0050 0023     		movs	r3, #0
- 456              	.LVL36:
- 457              		.loc 1 111 16 view .LVU145
- 458 0052 13E0     		b	.L26
- 459              	.LVL37:
- 460              	.L27:
- 112:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
- 461              		.loc 1 112 9 is_stmt 1 discriminator 3 view .LVU146
- 462              		.loc 1 112 54 is_stmt 0 discriminator 3 view .LVU147
- 463 0054 12AA     		add	r2, sp, #72
- 464 0056 02EB4302 		add	r2, r2, r3, lsl #1
- 465 005a 32F9402C 		ldrsh	r2, [r2, #-64]
- 466 005e 07EE902A 		vmov	s15, r2	@ int
- 467              		.loc 1 112 39 discriminator 3 view .LVU148
- 468 0062 F8EEE77A 		vcvt.f32.s32	s15, s15
- 469              		.loc 1 112 74 discriminator 3 view .LVU149
- 470 0066 94ED0E7A 		vldr.32	s14, [r4, #56]
- 471              		.loc 1 112 11 discriminator 3 view .LVU150
- 472 006a 04F10802 		add	r2, r4, #8
- 473              		.loc 1 112 25 discriminator 3 view .LVU151
- 474 006e 02EB8302 		add	r2, r2, r3, lsl #2
- 475              		.loc 1 112 65 discriminator 3 view .LVU152
- 476 0072 67EE877A 		vmul.f32	s15, s15, s14
- 477              		.loc 1 112 35 discriminator 3 view .LVU153
- 478 0076 C2ED007A 		vstr.32	s15, [r2]
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
- 479              		.loc 1 111 31 is_stmt 1 discriminator 3 view .LVU154
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
- 480              		.loc 1 111 38 is_stmt 0 discriminator 3 view .LVU155
- 481 007a 0133     		adds	r3, r3, #1
- 482              	.LVL38:
- 483              	.L26:
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 39
-
-
- 484              		.loc 1 111 20 is_stmt 1 discriminator 1 view .LVU156
- 111:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv); // - BMX_
- 485              		.loc 1 111 5 is_stmt 0 discriminator 1 view .LVU157
- 486 007c 022B     		cmp	r3, #2
- 487 007e E9DD     		ble	.L27
- 113:Src/BMX160.c  ****     }
- 114:Src/BMX160.c  **** 
- 115:Src/BMX160.c  ****     //acc data definition
- 116:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
- 488              		.loc 1 116 16 view .LVU158
- 489 0080 0023     		movs	r3, #0
- 490              	.LVL39:
- 491              		.loc 1 116 16 view .LVU159
- 492 0082 14E0     		b	.L28
+ 454              	.LBE23:
+ 455              	.LBE22:
+ 456              		.loc 1 88 10 discriminator 1 view .LVU146
+ 457 0056 032B     		cmp	r3, #3
+ 458 0058 FBD9     		bls	.L25
+  89:Src/BMX160.c  ****     HAL_I2C_Master_Receive(BMX_str->i2c_handler_ptr, BMX160Address, data_buffer, 12, HAL_MAX_DELAY)
+ 459              		.loc 1 89 5 is_stmt 1 view .LVU147
+ 460 005a 4FF0FF33 		mov	r3, #-1
+ 461 005e 0093     		str	r3, [sp]
+ 462 0060 0C23     		movs	r3, #12
+ 463 0062 05AA     		add	r2, sp, #20
+ 464 0064 D021     		movs	r1, #208
+ 465 0066 2068     		ldr	r0, [r4]
+ 466 0068 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 467              	.LVL37:
+  90:Src/BMX160.c  **** 
+  91:Src/BMX160.c  ****     //data unpack
+  92:Src/BMX160.c  ****     for(i_count=0; i_count<12; i_count++){
+ 468              		.loc 1 92 5 view .LVU148
+ 469              		.loc 1 92 16 is_stmt 0 view .LVU149
+ 470 006c 0023     		movs	r3, #0
+ 471              		.loc 1 92 5 view .LVU150
+ 472 006e 04E0     		b	.L26
+ 473              	.LVL38:
+ 474              	.L27:
+  93:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 475              		.loc 1 93 9 is_stmt 1 discriminator 3 view .LVU151
+ 476              		.loc 1 93 41 is_stmt 0 discriminator 3 view .LVU152
+ 477 0070 05AA     		add	r2, sp, #20
+ 478 0072 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
+ 479              		.loc 1 93 39 discriminator 3 view .LVU153
+ 480 0074 02AA     		add	r2, sp, #8
+ 481 0076 D154     		strb	r1, [r2, r3]
+  92:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 482              		.loc 1 92 32 is_stmt 1 discriminator 3 view .LVU154
+  92:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 483              		.loc 1 92 39 is_stmt 0 discriminator 3 view .LVU155
+ 484 0078 0133     		adds	r3, r3, #1
+ 485              	.LVL39:
+ 486              	.L26:
+  92:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 487              		.loc 1 92 20 is_stmt 1 discriminator 1 view .LVU156
+  92:Src/BMX160.c  ****         *((uint8_t*)raw_data+i_count) = *(data_buffer+i_count);
+ 488              		.loc 1 92 5 is_stmt 0 discriminator 1 view .LVU157
+ 489 007a 0B2B     		cmp	r3, #11
+ 490 007c F8DD     		ble	.L27
+  94:Src/BMX160.c  ****     }
+  95:Src/BMX160.c  **** 
+  96:Src/BMX160.c  ****     //gyro data definition and bias exclusion
+  97:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
+ 491              		.loc 1 97 16 view .LVU158
+ 492 007e 0023     		movs	r3, #0
  493              	.LVL40:
- 494              	.L29:
- 117:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
- 495              		.loc 1 117 9 is_stmt 1 discriminator 3 view .LVU160
- 496              		.loc 1 117 69 is_stmt 0 discriminator 3 view .LVU161
- 497 0084 DA1C     		adds	r2, r3, #3
- 498              		.loc 1 117 61 discriminator 3 view .LVU162
- 499 0086 12A9     		add	r1, sp, #72
- 500 0088 01EB4202 		add	r2, r1, r2, lsl #1
- 501 008c 32F9402C 		ldrsh	r2, [r2, #-64]
- 502 0090 07EE902A 		vmov	s15, r2	@ int
- 503              		.loc 1 117 46 discriminator 3 view .LVU163
- 504 0094 F8EEE77A 		vcvt.f32.s32	s15, s15
- 505              		.loc 1 117 83 discriminator 3 view .LVU164
- 506 0098 94ED0F7A 		vldr.32	s14, [r4, #60]
- 507              		.loc 1 117 11 discriminator 3 view .LVU165
- 508 009c 04F11402 		add	r2, r4, #20
- 509              		.loc 1 117 32 discriminator 3 view .LVU166
- 510 00a0 02EB8302 		add	r2, r2, r3, lsl #2
- 511              		.loc 1 117 74 discriminator 3 view .LVU167
- 512 00a4 67EE877A 		vmul.f32	s15, s15, s14
- 513              		.loc 1 117 42 discriminator 3 view .LVU168
- 514 00a8 C2ED007A 		vstr.32	s15, [r2]
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
- 515              		.loc 1 116 31 is_stmt 1 discriminator 3 view .LVU169
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
- 516              		.loc 1 116 38 is_stmt 0 discriminator 3 view .LVU170
- 517 00ac 0133     		adds	r3, r3, #1
- 518              	.LVL41:
- 519              	.L28:
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
- 520              		.loc 1 116 20 is_stmt 1 discriminator 1 view .LVU171
- 116:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv); /
- 521              		.loc 1 116 5 is_stmt 0 discriminator 1 view .LVU172
- 522 00ae 022B     		cmp	r3, #2
- 523 00b0 E8DD     		ble	.L29
- 118:Src/BMX160.c  ****     }
- 119:Src/BMX160.c  **** }...
- 524              		.loc 1 119 1 view .LVU173
- 525 00b2 12B0     		add	sp, sp, #72
- 526              	.LCFI5:
- 527              		.cfi_def_cfa_offset 8
- 528              		@ sp needed
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 40
+ 494              		.loc 1 97 16 view .LVU159
+ 495 0080 1BE0     		b	.L28
+ 496              	.LVL41:
+ 497              	.L29:
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 39
 
 
- 529 00b4 10BD     		pop	{r4, pc}
- 530              	.LVL42:
- 531              	.L32:
- 532              		.loc 1 119 1 view .LVU174
- 533 00b6 00BF     		.align	2
- 534              	.L31:
- 535 00b8 00000140 		.word	1073807360
- 536              		.cfi_endproc
- 537              	.LFE852:
- 539              		.text
- 540              	.Letext0:
- 541              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
- 542              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
- 543              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h"
- 544              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 545              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
- 546              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
- 547              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
- 548              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_rcc.h"
- 549              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_dma.h"
- 550              		.file 12 "Inc/BMX160.h"
-ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s 			page 41
+  98:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
+ 498              		.loc 1 98 9 is_stmt 1 discriminator 3 view .LVU160
+ 499              		.loc 1 98 54 is_stmt 0 discriminator 3 view .LVU161
+ 500 0082 12AA     		add	r2, sp, #72
+ 501 0084 02EB4302 		add	r2, r2, r3, lsl #1
+ 502 0088 32F9402C 		ldrsh	r2, [r2, #-64]
+ 503 008c 07EE902A 		vmov	s15, r2	@ int
+ 504              		.loc 1 98 39 discriminator 3 view .LVU162
+ 505 0090 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 506              		.loc 1 98 74 discriminator 3 view .LVU163
+ 507 0094 94ED0E7A 		vldr.32	s14, [r4, #56]
+ 508              		.loc 1 98 65 discriminator 3 view .LVU164
+ 509 0098 67EE877A 		vmul.f32	s15, s15, s14
+ 510              		.loc 1 98 113 discriminator 3 view .LVU165
+ 511 009c 03F11002 		add	r2, r3, #16
+ 512 00a0 04EB8202 		add	r2, r4, r2, lsl #2
+ 513 00a4 92ED007A 		vldr.32	s14, [r2]
+ 514              		.loc 1 98 11 discriminator 3 view .LVU166
+ 515 00a8 04F10802 		add	r2, r4, #8
+ 516              		.loc 1 98 25 discriminator 3 view .LVU167
+ 517 00ac 02EB8302 		add	r2, r2, r3, lsl #2
+ 518              		.loc 1 98 90 discriminator 3 view .LVU168
+ 519 00b0 77EEC77A 		vsub.f32	s15, s15, s14
+ 520              		.loc 1 98 35 discriminator 3 view .LVU169
+ 521 00b4 C2ED007A 		vstr.32	s15, [r2]
+  97:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
+ 522              		.loc 1 97 31 is_stmt 1 discriminator 3 view .LVU170
+  97:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
+ 523              		.loc 1 97 38 is_stmt 0 discriminator 3 view .LVU171
+ 524 00b8 0133     		adds	r3, r3, #1
+ 525              	.LVL42:
+ 526              	.L28:
+  97:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
+ 527              		.loc 1 97 20 is_stmt 1 discriminator 1 view .LVU172
+  97:Src/BMX160.c  ****         *(BMX_str->Omega+i_count) = (((float)raw_data[i_count]) * BMX_str->gyro_FS_conv) - BMX_str-
+ 528              		.loc 1 97 5 is_stmt 0 discriminator 1 view .LVU173
+ 529 00ba 022B     		cmp	r3, #2
+ 530 00bc E1DD     		ble	.L29
+  99:Src/BMX160.c  ****     }
+ 100:Src/BMX160.c  **** 
+ 101:Src/BMX160.c  ****     //acc data definition
+ 102:Src/BMX160.c  ****     for(i_count=0; i_count<3; i_count++){
+ 531              		.loc 1 102 16 view .LVU174
+ 532 00be 0023     		movs	r3, #0
+ 533              	.LVL43:
+ 534              		.loc 1 102 16 view .LVU175
+ 535 00c0 1CE0     		b	.L30
+ 536              	.LVL44:
+ 537              	.L31:
+ 103:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
+ 538              		.loc 1 103 9 is_stmt 1 discriminator 3 view .LVU176
+ 539              		.loc 1 103 69 is_stmt 0 discriminator 3 view .LVU177
+ 540 00c2 DA1C     		adds	r2, r3, #3
+ 541              		.loc 1 103 61 discriminator 3 view .LVU178
+ 542 00c4 12A9     		add	r1, sp, #72
+ 543 00c6 01EB4202 		add	r2, r1, r2, lsl #1
+ 544 00ca 32F9402C 		ldrsh	r2, [r2, #-64]
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 40
+
+
+ 545 00ce 07EE902A 		vmov	s15, r2	@ int
+ 546              		.loc 1 103 46 discriminator 3 view .LVU179
+ 547 00d2 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 548              		.loc 1 103 83 discriminator 3 view .LVU180
+ 549 00d6 94ED0F7A 		vldr.32	s14, [r4, #60]
+ 550              		.loc 1 103 74 discriminator 3 view .LVU181
+ 551 00da 67EE877A 		vmul.f32	s15, s15, s14
+ 552              		.loc 1 103 120 discriminator 3 view .LVU182
+ 553 00de 03F11202 		add	r2, r3, #18
+ 554 00e2 04EB8202 		add	r2, r4, r2, lsl #2
+ 555 00e6 92ED017A 		vldr.32	s14, [r2, #4]
+ 556              		.loc 1 103 11 discriminator 3 view .LVU183
+ 557 00ea 04F11402 		add	r2, r4, #20
+ 558              		.loc 1 103 32 discriminator 3 view .LVU184
+ 559 00ee 02EB8302 		add	r2, r2, r3, lsl #2
+ 560              		.loc 1 103 98 discriminator 3 view .LVU185
+ 561 00f2 77EEC77A 		vsub.f32	s15, s15, s14
+ 562              		.loc 1 103 42 discriminator 3 view .LVU186
+ 563 00f6 C2ED007A 		vstr.32	s15, [r2]
+ 102:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
+ 564              		.loc 1 102 31 is_stmt 1 discriminator 3 view .LVU187
+ 102:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
+ 565              		.loc 1 102 38 is_stmt 0 discriminator 3 view .LVU188
+ 566 00fa 0133     		adds	r3, r3, #1
+ 567              	.LVL45:
+ 568              	.L30:
+ 102:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
+ 569              		.loc 1 102 20 is_stmt 1 discriminator 1 view .LVU189
+ 102:Src/BMX160.c  ****         *(BMX_str->Acceleration+i_count) = (((float)raw_data[i_count+3]) * BMX_str->acc_FS_conv) - 
+ 570              		.loc 1 102 5 is_stmt 0 discriminator 1 view .LVU190
+ 571 00fc 022B     		cmp	r3, #2
+ 572 00fe E0DD     		ble	.L31
+ 104:Src/BMX160.c  ****     }
+ 105:Src/BMX160.c  **** }
+ 573              		.loc 1 105 1 view .LVU191
+ 574 0100 12B0     		add	sp, sp, #72
+ 575              	.LCFI5:
+ 576              		.cfi_def_cfa_offset 8
+ 577              		@ sp needed
+ 578 0102 10BD     		pop	{r4, pc}
+ 579              	.LVL46:
+ 580              	.L34:
+ 581              		.loc 1 105 1 view .LVU192
+ 582              		.align	2
+ 583              	.L33:
+ 584 0104 00000140 		.word	1073807360
+ 585              		.cfi_endproc
+ 586              	.LFE852:
+ 588              		.section	.text.BMX_LPF,"ax",%progbits
+ 589              		.align	1
+ 590              		.global	BMX_LPF
+ 591              		.syntax unified
+ 592              		.thumb
+ 593              		.thumb_func
+ 594              		.fpu fpv5-d16
+ 596              	BMX_LPF:
+ 597              	.LVL47:
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 41
+
+
+ 598              	.LFB853:
+ 106:Src/BMX160.c  **** 
+ 107:Src/BMX160.c  **** void BMX_LPF(BMX_IMU_typedef *BMX_str){
+ 599              		.loc 1 107 39 is_stmt 1 view -0
+ 600              		.cfi_startproc
+ 601              		@ args = 0, pretend = 0, frame = 0
+ 602              		@ frame_needed = 0, uses_anonymous_args = 0
+ 603              		@ link register save eliminated.
+ 108:Src/BMX160.c  **** 
+ 109:Src/BMX160.c  ****     int i_LPF; //counter
+ 604              		.loc 1 109 5 view .LVU194
+ 110:Src/BMX160.c  **** 
+ 111:Src/BMX160.c  ****     //update of previous values before to execute the filter for current step
+ 112:Src/BMX160.c  ****     for(i_LPF=0; i_LPF<3; i_LPF++){
+ 605              		.loc 1 112 5 view .LVU195
+ 606              		.loc 1 112 14 is_stmt 0 view .LVU196
+ 607 0000 0023     		movs	r3, #0
+ 608              		.loc 1 112 5 view .LVU197
+ 609 0002 14E0     		b	.L36
+ 610              	.LVL48:
+ 611              	.L37:
+ 113:Src/BMX160.c  ****         BMX_str->Acc_LPFd_1[i_LPF] = BMX_str->Acc_LPFd[i_LPF];
+ 612              		.loc 1 113 9 is_stmt 1 discriminator 3 view .LVU198
+ 613              		.loc 1 113 55 is_stmt 0 discriminator 3 view .LVU199
+ 614 0004 03F11E02 		add	r2, r3, #30
+ 615 0008 00EB8202 		add	r2, r0, r2, lsl #2
+ 616 000c 5168     		ldr	r1, [r2, #4]	@ float
+ 617              		.loc 1 113 36 discriminator 3 view .LVU200
+ 618 000e 03F12402 		add	r2, r3, #36
+ 619 0012 00EB8202 		add	r2, r0, r2, lsl #2
+ 620 0016 5160     		str	r1, [r2, #4]	@ float
+ 114:Src/BMX160.c  ****         BMX_str->Omega_LPFd_1[i_LPF] = BMX_str->Omega_LPFd[i_LPF];
+ 621              		.loc 1 114 9 is_stmt 1 discriminator 3 view .LVU201
+ 622              		.loc 1 114 59 is_stmt 0 discriminator 3 view .LVU202
+ 623 0018 03F11C02 		add	r2, r3, #28
+ 624 001c 00EB8202 		add	r2, r0, r2, lsl #2
+ 625 0020 1168     		ldr	r1, [r2]	@ float
+ 626              		.loc 1 114 38 discriminator 3 view .LVU203
+ 627 0022 03F12202 		add	r2, r3, #34
+ 628 0026 00EB8202 		add	r2, r0, r2, lsl #2
+ 629 002a 1160     		str	r1, [r2]	@ float
+ 112:Src/BMX160.c  ****         BMX_str->Acc_LPFd_1[i_LPF] = BMX_str->Acc_LPFd[i_LPF];
+ 630              		.loc 1 112 27 is_stmt 1 discriminator 3 view .LVU204
+ 112:Src/BMX160.c  ****         BMX_str->Acc_LPFd_1[i_LPF] = BMX_str->Acc_LPFd[i_LPF];
+ 631              		.loc 1 112 32 is_stmt 0 discriminator 3 view .LVU205
+ 632 002c 0133     		adds	r3, r3, #1
+ 633              	.LVL49:
+ 634              	.L36:
+ 112:Src/BMX160.c  ****         BMX_str->Acc_LPFd_1[i_LPF] = BMX_str->Acc_LPFd[i_LPF];
+ 635              		.loc 1 112 18 is_stmt 1 discriminator 1 view .LVU206
+ 112:Src/BMX160.c  ****         BMX_str->Acc_LPFd_1[i_LPF] = BMX_str->Acc_LPFd[i_LPF];
+ 636              		.loc 1 112 5 is_stmt 0 discriminator 1 view .LVU207
+ 637 002e 022B     		cmp	r3, #2
+ 638 0030 E8DD     		ble	.L37
+ 115:Src/BMX160.c  ****     }
+ 116:Src/BMX160.c  **** 
+ 117:Src/BMX160.c  ****     for(i_LPF=0; i_LPF<3; i_LPF++){
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 42
+
+
+ 639              		.loc 1 117 14 view .LVU208
+ 640 0032 0023     		movs	r3, #0
+ 641              	.LVL50:
+ 642              		.loc 1 117 14 view .LVU209
+ 643 0034 42E0     		b	.L38
+ 644              	.LVL51:
+ 645              	.L39:
+ 118:Src/BMX160.c  **** 
+ 119:Src/BMX160.c  ****         BMX_str->Acc_LPFd[i_LPF] = BMX_str->LPF_const_filt_1*BMX_str->Acc_LPFd_1[i_LPF] + BMX_str->
+ 646              		.loc 1 119 9 is_stmt 1 discriminator 3 view .LVU210
+ 647              		.loc 1 119 43 is_stmt 0 discriminator 3 view .LVU211
+ 648 0036 D0ED297A 		vldr.32	s15, [r0, #164]
+ 649              		.loc 1 119 81 discriminator 3 view .LVU212
+ 650 003a 03F12402 		add	r2, r3, #36
+ 651 003e 00EB8202 		add	r2, r0, r2, lsl #2
+ 652 0042 92ED017A 		vldr.32	s14, [r2, #4]
+ 653              		.loc 1 119 61 discriminator 3 view .LVU213
+ 654 0046 27EE877A 		vmul.f32	s14, s15, s14
+ 655              		.loc 1 119 98 discriminator 3 view .LVU214
+ 656 004a 90ED286A 		vldr.32	s12, [r0, #160]
+ 657              		.loc 1 119 138 discriminator 3 view .LVU215
+ 658 004e 03F10A02 		add	r2, r3, #10
+ 659 0052 00EB8202 		add	r2, r0, r2, lsl #2
+ 660 0056 D2ED016A 		vldr.32	s13, [r2, #4]
+ 661              		.loc 1 119 167 discriminator 3 view .LVU216
+ 662 005a 1A1D     		adds	r2, r3, #4
+ 663 005c 00EB8202 		add	r2, r0, r2, lsl #2
+ 664 0060 D2ED015A 		vldr.32	s11, [r2, #4]
+ 665              		.loc 1 119 145 discriminator 3 view .LVU217
+ 666 0064 76EEA56A 		vadd.f32	s13, s13, s11
+ 667              		.loc 1 119 113 discriminator 3 view .LVU218
+ 668 0068 66EE266A 		vmul.f32	s13, s12, s13
+ 669              		.loc 1 119 89 discriminator 3 view .LVU219
+ 670 006c 37EE267A 		vadd.f32	s14, s14, s13
+ 671              		.loc 1 119 34 discriminator 3 view .LVU220
+ 672 0070 03F11E02 		add	r2, r3, #30
+ 673 0074 00EB8202 		add	r2, r0, r2, lsl #2
+ 674 0078 82ED017A 		vstr.32	s14, [r2, #4]
+ 120:Src/BMX160.c  **** 
+ 121:Src/BMX160.c  ****         BMX_str->Omega_LPFd[i_LPF] = BMX_str->LPF_const_filt_1*BMX_str->Omega_LPFd_1[i_LPF] + BMX_s
+ 675              		.loc 1 121 9 is_stmt 1 discriminator 3 view .LVU221
+ 676              		.loc 1 121 85 is_stmt 0 discriminator 3 view .LVU222
+ 677 007c 03F12202 		add	r2, r3, #34
+ 678 0080 00EB8202 		add	r2, r0, r2, lsl #2
+ 679 0084 92ED007A 		vldr.32	s14, [r2]
+ 680              		.loc 1 121 63 discriminator 3 view .LVU223
+ 681 0088 67EE877A 		vmul.f32	s15, s15, s14
+ 682              		.loc 1 121 135 discriminator 3 view .LVU224
+ 683 008c 03F10802 		add	r2, r3, #8
+ 684 0090 00EB8202 		add	r2, r0, r2, lsl #2
+ 685 0094 92ED007A 		vldr.32	s14, [r2]
+ 686              		.loc 1 121 157 discriminator 3 view .LVU225
+ 687 0098 9A1C     		adds	r2, r3, #2
+ 688 009a 00EB8202 		add	r2, r0, r2, lsl #2
+ 689 009e D2ED006A 		vldr.32	s13, [r2]
+ 690              		.loc 1 121 142 discriminator 3 view .LVU226
+ 691 00a2 37EE267A 		vadd.f32	s14, s14, s13
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 43
+
+
+ 692              		.loc 1 121 117 discriminator 3 view .LVU227
+ 693 00a6 26EE076A 		vmul.f32	s12, s12, s14
+ 694              		.loc 1 121 93 discriminator 3 view .LVU228
+ 695 00aa 77EE867A 		vadd.f32	s15, s15, s12
+ 696              		.loc 1 121 36 discriminator 3 view .LVU229
+ 697 00ae 03F11C02 		add	r2, r3, #28
+ 698 00b2 00EB8202 		add	r2, r0, r2, lsl #2
+ 699 00b6 C2ED007A 		vstr.32	s15, [r2]
+ 117:Src/BMX160.c  **** 
+ 700              		.loc 1 117 27 is_stmt 1 discriminator 3 view .LVU230
+ 117:Src/BMX160.c  **** 
+ 701              		.loc 1 117 32 is_stmt 0 discriminator 3 view .LVU231
+ 702 00ba 0133     		adds	r3, r3, #1
+ 703              	.LVL52:
+ 704              	.L38:
+ 117:Src/BMX160.c  **** 
+ 705              		.loc 1 117 18 is_stmt 1 discriminator 1 view .LVU232
+ 117:Src/BMX160.c  **** 
+ 706              		.loc 1 117 5 is_stmt 0 discriminator 1 view .LVU233
+ 707 00bc 022B     		cmp	r3, #2
+ 708 00be BADD     		ble	.L39
+ 122:Src/BMX160.c  ****     }
+ 123:Src/BMX160.c  **** 
+ 124:Src/BMX160.c  **** }...
+ 709              		.loc 1 124 1 view .LVU234
+ 710 00c0 7047     		bx	lr
+ 711              		.cfi_endproc
+ 712              	.LFE853:
+ 714              		.text
+ 715              	.Letext0:
+ 716              		.file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 717              		.file 4 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\inc
+ 718              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h"
+ 719              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 720              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 721              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
+ 722              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
+ 723              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_rcc.h"
+ 724              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_dma.h"
+ 725              		.file 12 "Inc/BMX160.h"
+ARM GAS  C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s 			page 44
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 BMX160.c
-C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:17     .text.BMX_calibration:00000000 $t
-C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:25     .text.BMX_calibration:00000000 BMX_calibration
-C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:342    .text.BMX_calibration:00000164 $d
-C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:348    .text.BMX_read:00000000 $t
-C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:355    .text.BMX_read:00000000 BMX_read
-C:\Users\Giorgio\AppData\Local\Temp\cc3JIPZT.s:535    .text.BMX_read:000000b8 $d
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:17     .text.BMX_calibration:00000000 $t
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:25     .text.BMX_calibration:00000000 BMX_calibration
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:342    .text.BMX_calibration:00000164 $d
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:348    .text.BMX_read:00000000 $t
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:355    .text.BMX_read:00000000 BMX_read
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:584    .text.BMX_read:00000104 $d
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:589    .text.BMX_LPF:00000000 $t
+C:\Users\Giorgio\AppData\Local\Temp\ccY30fyf.s:596    .text.BMX_LPF:00000000 BMX_LPF
 
 UNDEFINED SYMBOLS
 HAL_I2C_Master_Transmit

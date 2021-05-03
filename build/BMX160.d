@@ -36,7 +36,8 @@ build/BMX160.o: Src/BMX160.c Inc/BMX160.h Inc/main.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_pwr.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_gpio.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_dma.h \
- Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_exti.h
+ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_exti.h \
+ Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h
 Inc/BMX160.h:
 Inc/main.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
@@ -79,3 +80,4 @@ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_pwr.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_gpio.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_dma.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_exti.h:
+Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:

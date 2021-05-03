@@ -66,6 +66,8 @@ HAL_StatusTypeDef ret;
 
 float Tlm_Tx_buff[6]; //buffer to store the floating point values to send via telemetry
 
+float sample_time = 0.01; //[s] sample time
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -139,7 +141,7 @@ int main(void)
   HAL_UART_Transmit(&huart4, buff, strlen((char*)buff), HAL_MAX_DELAY);
 
   //BMX calibration
-  //BMX_calibration(&BMX);
+  BMX_calibration(&BMX);
 
   //Starting timer 2 in interrupt mode
   HAL_TIM_Base_Start_IT(&htim2); //this function start the timer in interrupt mode and calls the irq handler 
@@ -467,6 +469,20 @@ void BMX_Init(BMX_IMU_typedef *BMX_str){
   BMX_str->uart_hndler_ptr=&huart4;
   BMX_str->acc_FS_conv=0.000122f; //[mg/LSB] to multiply the int16 value and obtain a float
   BMX_str->gyro_FS_conv=0.0153f; //[deg/s/LSB] to multiply the int16 value and obtain a float
+  BMX_str->T_samp=sample_time;
+  BMX_str->LPF_const_raw=0.2334f; //constants for 10Hz CO and 10 ms sample time
+  BMX_str->LPF_const_filt_1=0.5333f;
+
+  for(int init_count=0; init_count<3; init_count++){//set to 0 initial values
+  
+    BMX_str->Acceleration[init_count]=0.0f;
+    BMX_str->Omega[init_count]=0.0f;
+    BMX_str->Acc_LPFd[init_count]=0.0f;
+    BMX_str->Omega_LPFd[init_count]=0.0f;
+    BMX_str->acc_st_bias[init_count]=0.0f;
+    BMX_str->gyro_st_bias[init_count]=0.0f;
+
+  }
 
   //Initialization for values of BMX---> device register settings
   //gyro init and config
@@ -581,16 +597,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
     }
 
     BMX_read(&BMX); //Imu data read and save to the struct: data are raw unfiltered and maybe biased 
+    BMX_LPF(&BMX);
 
     if (1){
 
       //fill the telemetry array with red values
       for (int i_tlm=0; i_tlm<6; i_tlm++) {
         if (i_tlm<3) {
-          *(Tlm_Tx_buff+i_tlm) = BMX.Omega[i_tlm];
+          *(Tlm_Tx_buff+i_tlm) = BMX.Omega_LPFd[i_tlm];
         }
         else if (i_tlm>=3 && i_tlm<6) {
-          *(Tlm_Tx_buff+i_tlm) = BMX.Acceleration[i_tlm - 3];
+          *(Tlm_Tx_buff+i_tlm) = BMX.Acc_LPFd[i_tlm - 3];
         }
       }
 

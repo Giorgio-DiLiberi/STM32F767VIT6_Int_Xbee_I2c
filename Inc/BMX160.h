@@ -36,10 +36,24 @@ typedef struct {
     float gyro_variance[3]; //variance in gyro readings
     float acc_variance[3]; //variance in gyro readings
 
+    //filtered values
+    float Omega_LPFd[3]; //3 components of angular velocity low pass filtered
+    float Acc_LPFd[3]; //3 components of acceleration low pass filtered
+    float Omega_LPFd_1[3]; //previous step filtered values
+    float Acc_LPFd_1[3]; //prev step
+    float LPF_const_raw; //constant to multiply raw data
+    float LPF_const_filt_1; //constant to multiply LPFd data at prev steps
+    //these constants are evaluated based on filter specifications, there is a LPFd.m script to calculate 
+    //the constants for discrete filers
+
+    float T_samp; //[s] sample time set in init func 
+
 } BMX_IMU_typedef;
 
 void BMX_calibration(BMX_IMU_typedef *BMX_str); //function to execute at the beginning to evaluate the calibration
 
 void BMX_read(BMX_IMU_typedef *BMX_str); //function to update the data
+
+void BMX_LPF(BMX_IMU_typedef *BMX_str); //function to eliminate static bias and low pass filter data
 
 #endif
